@@ -14,10 +14,15 @@ Here you may find dashboards that provide statistics and visualisations based on
 * Performance per vip, vippool, user and view
 * Performance per tenant (supported on versions 5.3 and later)
 * Alarms
+* NICs State
+* Switches State (supported for cumulus switches version 5.12.1 and later - see explanation below)
+
+![image](https://github.com/user-attachments/assets/68e5e41a-d39f-4d95-ae58-d919bcd4a33e)
 
 Navigation between the dashboards is done through the buttons located at the right top corner of every dashboard -
 
-![image](https://github.com/user-attachments/assets/24359e57-a056-4f91-a737-bcbde60f9f59)
+<img width="931" alt="image" src="https://github.com/user-attachments/assets/924df197-3aef-45c3-b625-b1a35226ca73" />
+
 
 
 ## Compatibility

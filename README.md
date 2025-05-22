@@ -21,9 +21,9 @@ Navigation between the dashboards is done through the buttons located at the rig
 
 
 ## Compatibility
-Those dashboards support VAST 5.1-sp40 and later with the built-in Prometheus exporter. For older versions, please contact VAST support.
+The dashboards support VAST 5.1-sp40 and later with the built-in Prometheus exporter. For older versions, please contact VAST support.
 
-The dashboards are .json files - please import them to your Grafana instance, and configure a Prometheus data source, as explained in the following paragraph.
+The dashboards are provided as .json files - please import them to your Grafana instance, and configure a Prometheus data source, as explained in the following paragraph.
 
 <br>
 

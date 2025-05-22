@@ -1,150 +1,152 @@
 # Vast Grafana Dashboards
 
-# Introduction
+## Introduction
+
 VAST versions 4.7 and later have built-in Prometheus exporters for easy integration into existing monitoring infrastructure.
 
-Here you may find dashboards that provide statistics and visualisations based on scraped metrics: 
+This repository includes Grafana dashboards that provide statistics and visualizations based on scraped metrics:
 
-* Main dashboard - Cluster health and statistics
-* Capacity Utilization 
-* CNodes
-* DNodes, SSDs and NVRAMs
-* Protocols metadata statistics - NFSv3, NFSv4 and S3 metadata latency statistics
-* Replication streams (supported on versions 5.2 and later)
-* Performance per vip, vippool, user and view
-* Performance per tenant (supported on versions 5.3 and later)
-* Alarms
-* NICs State
-* Switches State (supported for cumulus switches version 5.12.1 and later - see explanation below)
+* **Main dashboard** – Cluster health and statistics
+* **Capacity Utilization**
+* **CNodes**
+* **DNodes, SSDs and NVRAMs**
+* **Protocols metadata statistics** – NFSv3, NFSv4, and S3 metadata latency
+* **Replication streams** (requires VAST 5.2 or later)
+* **Performance per VIP, VIP pool, user, and view**
+* **Performance per tenant** (requires VAST 5.3 or later)
+* **Alarms**
+* **NICs State**
+* **Switches State** (requires NVIDIA Cumulus Linux 5.12.1 or later – see [Switches Monitoring](#switches-monitoring))
 
-  A snippet from the main dashboard -
+### Example from the main dashboard
 
-![image](https://github.com/user-attachments/assets/68e5e41a-d39f-4d95-ae58-d919bcd4a33e)
+![Main Dashboard Screenshot](https://github.com/user-attachments/assets/68e5e41a-d39f-4d95-ae58-d919bcd4a33e)
 
-Navigation between the dashboards is done through the buttons located at the right top corner of every dashboard -
+Navigation between the dashboards is done through the buttons located at the top-right corner of every dashboard:
 
-<img width="931" alt="image" src="https://github.com/user-attachments/assets/924df197-3aef-45c3-b625-b1a35226ca73" />
+<img width="931" alt="Navigation" src="https://github.com/user-attachments/assets/924df197-3aef-45c3-b625-b1a35226ca73" />
 
-
+---
 
 ## Compatibility
-The dashboards support VAST 5.1-sp40 and later with the built-in Prometheus exporter. For older versions, please contact VAST support.
 
-The dashboards are provided as .json files - please import them to your Grafana instance, and configure a Prometheus data source, as explained in the following paragraph.
+These dashboards support VAST versions 5.1-sp40 and later with the built-in Prometheus exporter. For older versions, please contact VAST support.
 
-<br>
+The dashboards are provided as `.json` files – import them into your Grafana instance and configure a Prometheus data source as shown below.
 
-# Prometheus Configuration
-## Internal (Built-In) Exporter
-VAST clusters running 4.7 and later provide separate metrics endpoints to give more control on which metrics to fetch and how often to fetch them. This allows users to customize the trade off between metric freshness and the cost of fetching the data.
+---
 
-Here's an example `prometheus.yml` configuration for 4 endpoints used by those dashboards with some guidelines on scraping intervals.
+## Prometheus Configuration
+
+### Internal (Built-In) Exporter
+
+VAST clusters running version 4.7 and later expose separate metrics endpoints, giving control over what metrics to fetch and how frequently.
+
+Example `prometheus.yml` configuration:
 
 ```yaml
-  # Base metrics contain key cluster and protocol stats
-  # Recommended scrape interval is >= 30s
-  - job_name: 'vast_base'
-    metrics_path: '/api/prometheusmetrics/'
-    scrape_interval: 30s
-    scrape_timeout: 20s
+# Base metrics
+- job_name: 'vast_base'
+  metrics_path: '/api/prometheusmetrics/'
+  scrape_interval: 30s
+  scrape_timeout: 20s
+  scheme: https
+  static_configs:
+    - targets: ['<vms_ip>:443']
+  tls_config:
+    insecure_skip_verify: true
+  basic_auth:
+    username: 'admin'
+    password: 'xxxxxx'
 
-    scheme: https
-    static_configs:
-      - targets: ['<vms_ip>:443']
-    tls_config:
-        insecure_skip_verify: true
+# Device metrics
+- job_name: 'vast_devices'
+  metrics_path: '/api/prometheusmetrics/devices'
+  scrape_interval: 60s
+  scrape_timeout: 45s
+  scheme: https
+  static_configs:
+    - targets: ['<vms_ip>:443']
+  tls_config:
+    insecure_skip_verify: true
+  basic_auth:
+    username: 'admin'
+    password: 'xxxxxx'
 
-    basic_auth:
-       username: 'admin'
-       password: 'xxxxxx'
+# View metrics
+- job_name: 'vast_views'
+  metrics_path: '/api/prometheusmetrics/views'
+  scrape_interval: 120s
+  scrape_timeout: 60s
+  scheme: https
+  static_configs:
+    - targets: ['<vms_ip>:443']
+  tls_config:
+    insecure_skip_verify: true
+  basic_auth:
+    username: 'admin'
+    password: 'xxxxxx'
 
-
-  # Device metrics can be data intensive for larger clusters
-  # Recommended scrape interval is >= 60s
-  - job_name: 'vast_devices'
-    metrics_path: '/api/prometheusmetrics/devices'
-    scrape_interval: 60s
-    scrape_timeout: 45s
-
-    scheme: https
-    static_configs:
-      - targets: ['<vms_ip>:443']
-    tls_config:
-        insecure_skip_verify: true
-
-    basic_auth:
-       username: 'admin'
-       password: 'xxxxxx'
-
-
-  # View metrics can be data intensive for clusters with many views
-  # Recommended scrape interval is >= 60s
-  - job_name: 'vast_views'
-    metrics_path: '/api/prometheusmetrics/views'
-    scrape_interval: 120s
-    scrape_timeout: 60s
-
-    scheme: https
-    static_configs:
-      - targets: ['<vms_ip>:443']
-    tls_config:
-        insecure_skip_verify: true
-
-    basic_auth:
-       username: 'admin'
-       password: 'xxxxxx'
-
-
-  # User metrics can be data intensive for clusters with many users
-  # Recommended scrape interval is >= 60s
-  - job_name: 'vast_users'
-    metrics_path: '/api/prometheusmetrics/users'
-    scrape_interval: 120s
-    scrape_timeout: 60s
-
-    scheme: https
-    static_configs:
-      - targets: ['<vms_ip>:443']
-    tls_config:
-        insecure_skip_verify: true
-
-    basic_auth:
-       username: 'admin'
-       password: 'xxxxxx'
+# User metrics
+- job_name: 'vast_users'
+  metrics_path: '/api/prometheusmetrics/users'
+  scrape_interval: 120s
+  scrape_timeout: 60s
+  scheme: https
+  static_configs:
+    - targets: ['<vms_ip>:443']
+  tls_config:
+    insecure_skip_verify: true
+  basic_auth:
+    username: 'admin'
+    password: 'xxxxxx'
 ```
+
 ### Prometheus Authentication
-Prometheus supports basic authentication and bearer token authentication. 
-An example for authentication with bearer token -
+
+Prometheus supports both basic authentication and bearer tokens. Example using bearer token:
 
 ```yaml
-scrape_configs:
-  - job_name: 'vast_views'
-    scrape_interval: 120s
-    scrape_timeout: 90s
-    scheme: https
-    metrics_path: '/api/prometheusmetrics/views'
-    static_configs:
-      - targets: ['<vms_ip>:443>']
-    authorization:
-      type: Bearer
-      credentials: '<your-token>'
-    tls_config:
-      insecure_skip_verify: true
+- job_name: 'vast_views'
+  scrape_interval: 120s
+  scrape_timeout: 90s
+  scheme: https
+  metrics_path: '/api/prometheusmetrics/views'
+  static_configs:
+    - targets: ['<vms_ip>:443']
+  authorization:
+    type: Bearer
+    credentials: '<your-token>'
+  tls_config:
+    insecure_skip_verify: true
 ```
-### Supported Metrics Endpoints
-`/api/prometheusmetrics/alarms` - Exports all active VAST cluster alarms. <br>
-`/api/prometheusmetrics/users` - Exports user bandwidth, IOPS and metadata IOPS metrics on read and/or write operations. <br>
-`/api/prometheusmetrics/views` - Exports performance metrics per view, including bandwidth, IOPS, metadata IOPS, latency and QoS, and also view logical and physical capacity. <br>
-`/api/prometheusmetrics/quotas` - Provides information related to quotas configured on the cluster, such as the quota limits set and number of users who have exceeded the quota or who have been blocked due to quota exceeded condition. <br>
-`/api/prometheusmetrics/replications` - Provides information related to replication streams - Replication stream state, RPO and RPO offset, bandwidth, logical and physical backlog. Supported on versions 5.2-sp10 and later. <br>
-`/api/prometheusmetrics/devices` - Provides information about the SSD or NVRAM physical state, such as presence of media errors or current temperature, and overall operational status (active or failed). <br>
-`/api/prometheusmetrics/defrag` - Exports metrics related to defragmentation. <br>
-`/api/prometheusmetrics/vips` - Exports vip / vipool performance metrics, including a metric that provides mapping of CNode, vip and vippool. <br>
-`/api/prometheusmetrics/user_view` - Exports performance metrics per user and view. Supported on version 5.2-sp15 and later. <br>
-`/api/prometheusmetrics/nics` - Provides information on NICs state and errors (for example - out of sequence, out of buffers and symbol errors). Supported on versions 5.2-sp20 and later.<br>
-`/api/prometheusmetrics/` - Exports cluster and CNode metrics that are not exported by the above-listed endpoints. This includes, for example, performance metrics per storage protocol. <br>
-`/api/prometheusmetrics/all` - Exports all VAST Cluster metrics. This includes each and every metrics that can be exported by the above-listed exporter endpoints. Due to big amount of data being exported, using this endpoint to collect metrics from a large cluster is not recommended. <br>
-``
 
+---
 
+## Supported Metrics Endpoints
 
+* `/api/prometheusmetrics/alarms` – All active VAST cluster alarms
+* `/api/prometheusmetrics/users` – Per-user bandwidth, IOPS, and metadata IOPS
+* `/api/prometheusmetrics/views` – Performance per view, logical/physical capacity, QoS
+* `/api/prometheusmetrics/quotas` – Quota limits, exceeded/bloacked user counts
+* `/api/prometheusmetrics/replications` – Replication stream stats (5.2-sp10+)
+* `/api/prometheusmetrics/devices` – SSD/NVRAM state and media info
+* `/api/prometheusmetrics/defrag` – Defragmentation metrics
+* `/api/prometheusmetrics/vips` – VIP/VIP pool performance
+* `/api/prometheusmetrics/user_view` – Per-user + per-view metrics (5.2-sp15+)
+* `/api/prometheusmetrics/nics` – NICs state/errors (5.2-sp20+)
+* `/api/prometheusmetrics/` – General cluster + CNode metrics
+* `/api/prometheusmetrics/all` – All metrics (use cautiously on large clusters)
+
+---
+
+## Switches Monitoring
+
+Our monitoring solution supports **NVIDIA Cumulus switches (v5.12.1 and later)**. It includes:
+
+* **OpenTelemetry (OTEL)** – native switch support for metrics
+* **Custom Prometheus exporter** – fills gaps until OTEL support is complete
+
+Both components export to Prometheus and are visualized in the **"Switches State"** Grafana dashboard.
+
+📄 For complete setup instructions, see [SWITCH\_MONITORING.md](./SWITCH_MONITORING.md)

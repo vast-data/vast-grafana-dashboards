@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "10.2.3"
+      "version": "11.5.1"
     },
     {
       "type": "datasource",
@@ -75,58 +75,15 @@
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "Performance"
-      ],
-      "targetBlank": false,
-      "title": "Performance",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "Switches"
-      ],
-      "targetBlank": false,
-      "title": "NICs & Switches",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "Logs"
-      ],
-      "targetBlank": false,
-      "title": "Logs",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": false,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
         "VAST"
       ],
       "targetBlank": false,
-      "title": "Main",
+      "title": "Switch Dashboard",
       "tooltip": "",
       "type": "dashboards",
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -140,7 +97,6 @@
             "fixedColor": "blue",
             "mode": "fixed"
           },
-          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -173,7 +129,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "decbytes"
+                "value": "bytes"
               }
             ]
           },
@@ -185,7 +141,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "decbytes"
+                "value": "bytes"
               }
             ]
           },
@@ -197,15 +153,15 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "decbytes"
+                "value": "bytes"
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 5,
-        "w": 11,
+        "h": 16,
+        "w": 3,
         "x": 0,
         "y": 0
       },
@@ -230,8 +186,20 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_cluster_logical_space_in_use{cluster=\"$cluster\"}",
+          "instant": false,
+          "legendFormat": "Logical Space Used ",
+          "range": true,
+          "refId": "A"
+        },
         {
           "datasource": {
             "type": "prometheus",
@@ -244,18 +212,6 @@
           "legendFormat": "Total Logical Space ",
           "range": true,
           "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "vast_cluster_logical_space_in_use{cluster=\"$cluster\"}",
-          "instant": false,
-          "legendFormat": "Logical Space Used ",
-          "range": true,
-          "refId": "A"
         },
         {
           "datasource": {
@@ -292,6 +248,230 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Physical Space Used - Percentage"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total Physical Space "
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Physical Space Used "
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Physical Space Remaining"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 3,
+        "x": 3,
+        "y": 0
+      },
+      "id": 891,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {
+          "titleSize": 15
+        },
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_cluster_physical_space_in_use{cluster=\"$cluster\"}",
+          "instant": false,
+          "legendFormat": "Physical Space Used ",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_cluster_physical_space{cluster=\"$cluster\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Total Physical Space ",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "100 * vast_cluster_physical_space_in_use{cluster=\"$cluster\"}/ vast_cluster_physical_space{cluster=\"$cluster\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Physical Space Used - Percentage",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_cluster_physical_space{cluster=\"$cluster\"} - vast_cluster_physical_space_in_use{cluster=\"$cluster\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Physical Space Remaining",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "Physical Capacity",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 6,
+        "y": 0
+      },
+      "id": 883,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "exemplar": true,
+          "expr": "vast_cluster_drr{cluster=\"$cluster\"}",
+          "interval": "",
+          "legendFormat": "Data Reduction Ratio",
+          "refId": "A"
+        }
+      ],
+      "title": "Last DRR",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -305,6 +485,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -363,7 +544,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "decbytes"
+                "value": "bytes"
               }
             ]
           },
@@ -375,7 +556,19 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "decbytes"
+                "value": "bytes"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Logical Space Remaining"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "bytes"
               }
             ]
           },
@@ -387,7 +580,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "decbytes"
+                "value": "bytes"
               }
             ]
           },
@@ -399,7 +592,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "decbytes"
+                "value": "bytes"
               }
             ]
           },
@@ -426,25 +619,13 @@
                 "value": "percent"
               }
             ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Total Quota Usage - Percentage"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percent"
-              }
-            ]
           }
         ]
       },
       "gridPos": {
-        "h": 14,
-        "w": 13,
-        "x": 11,
+        "h": 16,
+        "w": 15,
+        "x": 9,
         "y": 0
       },
       "id": 882,
@@ -452,7 +633,7 @@
         "legend": {
           "calcs": [],
           "displayMode": "list",
-          "placement": "right",
+          "placement": "bottom",
           "showLegend": true
         },
         "tooltip": {
@@ -462,7 +643,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -472,7 +653,6 @@
           "editorMode": "code",
           "exemplar": false,
           "expr": "vast_cluster_logical_space_in_use{cluster=\"$cluster\"}",
-          "hide": false,
           "instant": false,
           "interval": "",
           "legendFormat": "Logical Space Used ",
@@ -550,26 +730,12 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "rate(vast_cluster_metrics_RaidMetrics_stripe_available_percent_sum{cluster='$cluster'}[$__rate_interval]) / rate(vast_cluster_metrics_RaidMetrics_stripe_available_percent_count{cluster='$cluster'}[$__rate_interval])",
+          "expr": "vast_cluster_metrics_RaidMetrics_stripe_available_percent_sum{cluster='$cluster'} / vast_cluster_metrics_RaidMetrics_stripe_available_percent_count{cluster='$cluster'}",
           "hide": false,
           "instant": false,
           "legendFormat": "Stripe Availability - Percentage",
           "range": true,
           "refId": "D"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "100 * (sum(vast_quota_used_capacity{cluster=\"$cluster\"})/ sum(vast_quota_hard_limit{cluster=\"$cluster\"}))",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "Total Quota Usage - Percentage",
-          "range": true,
-          "refId": "I"
         }
       ],
       "title": "Capacity over Time",
@@ -586,232 +752,6 @@
             "fixedColor": "blue",
             "mode": "fixed"
           },
-          "decimals": 2,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Physical Space Used - Percentage"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percent"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Total Physical Space "
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "decbytes"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Physical Space Used "
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "decbytes"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Physical Space Remaining"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "decbytes"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 11,
-        "x": 0,
-        "y": 5
-      },
-      "id": 891,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "text": {
-          "titleSize": 15
-        },
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.2.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "vast_cluster_physical_space{cluster=\"$cluster\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "Total Physical Space ",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "vast_cluster_physical_space_in_use{cluster=\"$cluster\"}",
-          "instant": false,
-          "legendFormat": "Physical Space Used ",
-          "range": true,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "100 * vast_cluster_physical_space_in_use{cluster=\"$cluster\"}/ vast_cluster_physical_space{cluster=\"$cluster\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "Physical Space Used - Percentage",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "vast_cluster_physical_space{cluster=\"$cluster\"} - vast_cluster_physical_space_in_use{cluster=\"$cluster\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "Physical Space Remaining",
-          "range": true,
-          "refId": "D"
-        }
-      ],
-      "title": "Physical Capacity",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "blue",
-            "mode": "fixed"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 2,
-        "x": 0,
-        "y": 9
-      },
-      "id": 883,
-      "options": {
-        "colorMode": "none",
-        "graphMode": "area",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "text": {},
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.2.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "exemplar": true,
-          "expr": "vast_cluster_drr{cluster=\"$cluster\"}",
-          "interval": "",
-          "legendFormat": "Data Reduction Ratio",
-          "refId": "A"
-        }
-      ],
-      "title": "Last DRR",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "blue",
-            "mode": "fixed"
-          },
-          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -844,7 +784,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "decbytes"
+                "value": "bytes"
               }
             ]
           },
@@ -863,10 +803,10 @@
         ]
       },
       "gridPos": {
-        "h": 5,
-        "w": 9,
-        "x": 2,
-        "y": 9
+        "h": 12,
+        "w": 3,
+        "x": 6,
+        "y": 4
       },
       "id": 881,
       "options": {
@@ -890,7 +830,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -910,7 +850,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "100 * vast_cluster_auxiliary_space_in_use{cluster=\"$cluster\"} / vast_cluster_physical_space_in_use{cluster=\"$cluster\"}",
+          "expr": "100 * vast_cluster_auxiliary_space_in_use{cluster=\"$cluster\"}/ vast_cluster_physical_space_in_use{cluster=\"$cluster\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "Auxiliary Used / Physical Used",
@@ -943,8 +883,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "transparent",
-            "mode": "fixed"
+            "mode": "thresholds"
           },
           "custom": {
             "align": "center",
@@ -1084,6 +1023,18 @@
           {
             "matcher": {
               "id": "byRegexp",
+              "options": "/title.*/"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
               "options": "/__name__.*/"
             },
             "properties": [
@@ -1101,7 +1052,7 @@
             "properties": [
               {
                 "id": "unit",
-                "value": "decbytes"
+                "value": "bytes"
               },
               {
                 "id": "displayName",
@@ -1124,14 +1075,11 @@
             "properties": [
               {
                 "id": "displayName",
-                "value": "Inodes Util - Percentage"
+                "value": "Inodes Util"
               },
               {
                 "id": "noValue",
                 "value": "No hard limit"
-              },
-              {
-                "id": "color"
               }
             ]
           },
@@ -1149,17 +1097,6 @@
                 }
               }
             ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Inodes Util"
-            },
-            "properties": [
-              {
-                "id": "unit"
-              }
-            ]
           }
         ]
       },
@@ -1167,7 +1104,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 16
       },
       "id": 892,
       "options": {
@@ -1185,7 +1122,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1232,20 +1169,6 @@
           "legendFormat": "__auto",
           "range": false,
           "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "vast_quota_used_inodes{cluster=\"$cluster\"}",
-          "format": "table",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "__auto",
-          "range": true,
-          "refId": "B"
         }
       ],
       "title": "Quotas utilization",
@@ -1262,54 +1185,12 @@
           "options": {
             "excludeByName": {
               "tenant_name 2": true,
-              "tenant_name 3": true,
-              "tenant_name 4": true,
-              "title 2": true,
-              "title 3": true,
-              "title 4": true
+              "tenant_name 3": true
             },
             "includeByName": {},
-            "indexByName": {
-              "Time 1": 2,
-              "Time 2": 11,
-              "Time 3": 19,
-              "Time 4": 27,
-              "Value #A": 26,
-              "Value #B": 10,
-              "Value #C": 18,
-              "Value #D": 9,
-              "__name__ 1": 3,
-              "__name__ 2": 28,
-              "cluster 1": 4,
-              "cluster 2": 12,
-              "cluster 3": 20,
-              "cluster 4": 29,
-              "guid 1": 5,
-              "guid 2": 13,
-              "guid 3": 21,
-              "guid 4": 30,
-              "instance 1": 6,
-              "instance 2": 14,
-              "instance 3": 22,
-              "instance 4": 31,
-              "job 1": 7,
-              "job 2": 15,
-              "job 3": 23,
-              "job 4": 32,
-              "path": 1,
-              "tenant_name 1": 8,
-              "tenant_name 2": 16,
-              "tenant_name 3": 24,
-              "tenant_name 4": 33,
-              "title 1": 0,
-              "title 2": 17,
-              "title 3": 25,
-              "title 4": 34
-            },
+            "indexByName": {},
             "renameByName": {
-              "Value #B": "Inodes Util",
-              "tenant_name 1": "Tenant Name",
-              "title 1": "Quota Name"
+              "tenant_name 1": "Tenant Name"
             }
           }
         }
@@ -1318,9 +1199,9 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [
-    "Performance"
+    "VAST"
   ],
   "templating": {
     "list": [
@@ -1331,10 +1212,8 @@
           "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cluster_online,cluster)",
-        "hide": 0,
         "includeAll": false,
         "label": "Cluster",
-        "multi": false,
         "name": "cluster",
         "options": [],
         "query": {
@@ -1344,14 +1223,13 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1367,9 +1245,9 @@
       "1d"
     ]
   },
-  "timezone": "",
-  "title": "Capacity  Utilization",
-  "uid": "monitoringcapacity",
-  "version": 1,
+  "timezone": "Asia/Jerusalem",
+  "title": "Capacity & Quota Utilization",
+  "uid": "vastspace",
+  "version": 4,
   "weekStart": ""
 }

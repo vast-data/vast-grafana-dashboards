@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "10.2.3"
+      "version": "11.5.1"
     },
     {
       "type": "datasource",
@@ -33,6 +33,12 @@
       "type": "panel",
       "id": "table",
       "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
       "version": ""
     },
     {
@@ -72,217 +78,88 @@
   "links": [
     {
       "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "Performance"
-      ],
-      "targetBlank": false,
-      "title": "Performance",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "Logs"
-      ],
-      "targetBlank": false,
-      "title": "Logs",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "Switches"
-      ],
-      "targetBlank": false,
-      "title": "NICs & Switches",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": false,
-      "icon": "external link",
+      "icon": "dashboard",
       "includeVars": true,
       "keepTime": true,
       "tags": [
         "VAST"
       ],
-      "targetBlank": true,
-      "title": "main",
+      "targetBlank": false,
+      "title": "Switch Dashboard",
       "tooltip": "",
       "type": "dashboards",
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "blue",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "id": 890,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "index": 1,
+                  "text": "Offline"
+                },
+                "1": {
+                  "index": 0,
+                  "text": "Online"
+                }
+              },
+              "type": "value"
+            }
           ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.2.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(count by(id) (vast_cnode_failed{cluster=\"$cluster\"}))",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "CNodes",
-          "range": false,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(count by(id) (vast_dnode_failed{cluster=\"$cluster\"}))",
-          "instant": true,
-          "legendFormat": "DNodes",
-          "range": false,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(count by(title) (vast_ssd_failed{cluster=\"$cluster\"}))",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "SSDs",
-          "range": false,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(count by(title) (vast_nvram_failed{cluster=\"$cluster\"}))",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "SCMs",
-          "range": false,
-          "refId": "D"
-        }
-      ],
-      "title": "Components",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "text",
-            "mode": "fixed"
-          },
-          "mappings": [],
-          "max": 1,
-          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-red",
                 "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 1
               }
             ]
           },
-          "unit": "decbytes"
+          "unit": "short"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
-        "w": 5,
-        "x": 6,
+        "h": 6,
+        "w": 3,
+        "x": 0,
         "y": 0
       },
-      "id": 35,
+      "id": 270,
       "options": {
         "colorMode": "value",
-        "graphMode": "area",
-        "justifyMode": "auto",
+        "graphMode": "none",
+        "justifyMode": "center",
         "orientation": "auto",
         "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
+            "last"
           ],
           "fields": "",
           "values": false
         },
         "showPercentChange": false,
-        "textMode": "auto",
+        "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -290,31 +167,17 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "vast_cluster_logical_space_in_use{cluster=\"$cluster\"}",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "Logical",
-          "range": false,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "vast_cluster_physical_space_in_use{cluster=\"$cluster\"}",
+          "exemplar": true,
+          "expr": "vast_cluster_online{cluster=\"$cluster\"}",
           "format": "time_series",
-          "instant": true,
+          "hide": false,
+          "instant": false,
           "interval": "",
-          "legendFormat": "Physical",
-          "range": false,
+          "legendFormat": "Cluster State",
           "refId": "A"
         }
       ],
-      "title": "Capacity Used",
+      "title": "Cluster State",
       "type": "stat"
     },
     {
@@ -363,10 +226,10 @@
       "gridPos": {
         "h": 2,
         "w": 3,
-        "x": 11,
+        "x": 3,
         "y": 0
       },
-      "id": 271,
+      "id": 273,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -384,26 +247,24 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "vast_nvram_raid_healthy{cluster=\"$cluster\"}",
+          "exemplar": true,
+          "expr": "vast_memory_raid_healthy{cluster=\"$cluster\"}",
           "format": "time_series",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "interval": "",
-          "legendFormat": "NVRAM State",
-          "range": false,
+          "legendFormat": "Memory State",
           "refId": "A"
         }
       ],
-      "title": "SCM RAID State",
+      "title": "Memory RAID State",
       "type": "stat"
     },
     {
@@ -421,12 +282,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "blue",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
               }
             ]
           }
@@ -435,11 +292,11 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 3,
-        "x": 14,
+        "w": 4,
+        "x": 6,
         "y": 0
       },
-      "id": 922,
+      "id": 890,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -457,7 +314,126 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "count(count by(id) (vast_cnode_failed{cluster=\"$cluster\"}))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "CNodes",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "count(count by(id) (vast_dnode_failed{cluster=\"$cluster\"}))",
+          "instant": false,
+          "legendFormat": "DNodes",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "count(count by(title) (vast_ssd_failed{cluster=\"$cluster\"}))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "SSDs",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "count(count by(title) (vast_nvram_failed{cluster=\"$cluster\"}))",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "SCMs",
+          "range": true,
+          "refId": "D"
+        }
+      ],
+      "title": "Components",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SMB"
+            },
+            "properties": [
+              {
+                "id": "noValue"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 4,
+        "x": 10,
+        "y": 0
+      },
+      "id": 127,
+      "options": {
+        "colorMode": "none",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -466,14 +442,155 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "count(vast_nic_active{cluster=\"$cluster\", hostname=~\".*cn.*\"}) - sum(vast_nic_active{cluster=\"$cluster\", hostname=~\".*cn.*\"})",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
+          "expr": "vast_cluster_metrics_ProtoConnectionMetrics_nfs3_tcp_pool{cluster=\"$cluster\"}",
+          "format": "time_series",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "NFSv3",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "vast_cluster_metrics_ProtoConnectionMetrics_s3_conn_pool{cluster=\"$cluster\"}",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "S3",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "vast_cluster_metrics_ProtoConnectionMetrics_smb_conn_pool{cluster=\"$cluster\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "SMB",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_cluster_metrics_Nfs4Metrics_nfs4_open_connections_cnt{cluster=\"$cluster\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "NFSv4",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_cluster_metrics_ProtoConnectionMetrics_smb_conn_pool{cluster=\"$cluster\"} + vast_cluster_metrics_ProtoConnectionMetrics_s3_conn_pool{cluster=\"$cluster\"} + vast_cluster_metrics_ProtoConnectionMetrics_nfs3_tcp_pool{cluster=\"$cluster\"} +\nvast_cluster_metrics_Nfs4Metrics_nfs4_open_connections_cnt{cluster=\"$cluster\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Total",
+          "range": true,
+          "refId": "E"
+        }
+      ],
+      "title": "Active Connections",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "semi-dark-blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 14,
+        "y": 0
+      },
+      "id": 35,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_cluster_logical_space_in_use{cluster=\"$cluster\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "Logical",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": true,
+          "expr": "vast_cluster_physical_space_in_use{cluster=\"$cluster\"}",
+          "format": "time_series",
+          "interval": "",
+          "legendFormat": "Physical",
+          "range": true,
           "refId": "A"
         }
       ],
-      "title": "Inactive NICs - CNodes",
+      "title": "Capacity Used",
       "type": "stat"
     },
     {
@@ -488,10 +605,9 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": "center",
+            "align": "auto",
             "cellOptions": {
-              "type": "auto",
-              "wrapText": false
+              "type": "auto"
             },
             "inspect": false
           },
@@ -553,10 +669,6 @@
                   "applyToRow": true,
                   "type": "color-background"
                 }
-              },
-              {
-                "id": "custom.width",
-                "value": 89
               }
             ]
           }
@@ -564,8 +676,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 7,
-        "x": 17,
+        "w": 6,
+        "x": 18,
         "y": 0
       },
       "id": 921,
@@ -579,10 +691,9 @@
           ],
           "show": false
         },
-        "showHeader": true,
-        "sortBy": []
+        "showHeader": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -591,7 +702,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum(vast_vms_alarms{event_name!='NOTIFIER_EVENT', cluster='$cluster'}) by (severity, event_name)",
+          "expr": "sum(vast_vms_alarms{event_name!='NOTIFIER_EVENT'}) by (severity)",
           "format": "table",
           "instant": true,
           "legendFormat": "__auto",
@@ -600,32 +711,6 @@
         }
       ],
       "title": "Alarm Counter ",
-      "transformations": [
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "field": "severity"
-              }
-            ]
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "includeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "Value": "Count",
-              "event_name": "Alarm Code",
-              "severity": "Severity"
-            }
-          }
-        }
-      ],
       "type": "table"
     },
     {
@@ -674,10 +759,10 @@
       "gridPos": {
         "h": 2,
         "w": 3,
-        "x": 11,
+        "x": 3,
         "y": 2
       },
-      "id": 272,
+      "id": 271,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -695,26 +780,24 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "vast_ssd_raid_healthy{cluster=\"$cluster\"}",
+          "exemplar": true,
+          "expr": "vast_nvram_raid_healthy{cluster=\"$cluster\"}",
           "format": "time_series",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "interval": "",
-          "legendFormat": "SSD State",
-          "range": false,
+          "legendFormat": "NVRAM State",
           "refId": "A"
         }
       ],
-      "title": "SSD RAID State",
+      "title": "SCM RAID State",
       "type": "stat"
     },
     {
@@ -746,8 +829,8 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 3,
-        "x": 0,
+        "w": 4,
+        "x": 6,
         "y": 3
       },
       "id": 907,
@@ -768,7 +851,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -776,12 +859,11 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "exemplar": false,
           "expr": "sum(vast_cnode_failed{cluster=\"$cluster\"})",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "legendFormat": "CNodes",
-          "range": false,
+          "range": true,
           "refId": "B"
         },
         {
@@ -790,11 +872,10 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "exemplar": false,
           "expr": "sum(vast_dnode_failed{cluster=\"$cluster\"})",
-          "instant": true,
+          "instant": false,
           "legendFormat": "DNodes",
-          "range": false,
+          "range": true,
           "refId": "A"
         },
         {
@@ -803,12 +884,11 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "exemplar": false,
           "expr": "sum(vast_ssd_failed{cluster=\"$cluster\"})",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "legendFormat": "SSDs",
-          "range": false,
+          "range": true,
           "refId": "C"
         },
         {
@@ -817,12 +897,11 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "exemplar": false,
           "expr": "sum(vast_nvram_failed{cluster=\"$cluster\"})",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "legendFormat": "SCMs",
-          "range": false,
+          "range": true,
           "refId": "D"
         }
       ],
@@ -837,136 +916,16 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "semi-dark-green",
-                "value": null
-              },
-              {
-                "color": "orange",
-                "value": 1
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 3,
-        "y": 3
-      },
-      "id": 949,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.2.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(vast_cnode_inactive{cluster=\"$cluster\"} AND vast_cnode_failed{cluster=\"$cluster\"} == 0)",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "CNodes",
-          "range": false,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(vast_dnode_inactive{cluster=\"$cluster\"} AND vast_dnode_failed{cluster=\"$cluster\"} == 0)",
-          "instant": true,
-          "legendFormat": "DNodes",
-          "range": false,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(vast_ssd_inactive{cluster=\"$cluster\"} AND vast_ssd_failed{cluster=\"$cluster\"} == 0)",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "SSDs",
-          "range": false,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum(vast_nvram_inactive{cluster=\"$cluster\"} AND vast_nvram_failed{cluster=\"$cluster\"} == 0)",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "SCMs",
-          "range": false,
-          "refId": "D"
-        }
-      ],
-      "title": "Inactive Components",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
             "fixedColor": "blue",
-            "mode": "thresholds"
+            "mode": "fixed"
           },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "dark-green",
+                "color": "green",
                 "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 80
-              },
-              {
-                "color": "red",
-                "value": 95
               }
             ]
           },
@@ -982,12 +941,6 @@
               {
                 "id": "unit",
                 "value": "percent"
-              },
-              {
-                "id": "color",
-                "value": {
-                  "mode": "thresholds"
-                }
               }
             ]
           },
@@ -998,7 +951,11 @@
             },
             "properties": [
               {
-                "id": "color"
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
               }
             ]
           }
@@ -1006,13 +963,13 @@
       },
       "gridPos": {
         "h": 3,
-        "w": 5,
-        "x": 6,
+        "w": 4,
+        "x": 14,
         "y": 3
       },
       "id": 33,
       "options": {
-        "colorMode": "value",
+        "colorMode": "none",
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
@@ -1029,7 +986,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1037,86 +994,15 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "exemplar": false,
+          "exemplar": true,
           "expr": "100 * vast_cluster_physical_space_in_use{cluster=\"$cluster\"} / vast_cluster_physical_space{cluster=\"$cluster\"}",
-          "instant": true,
           "interval": "",
           "legendFormat": "Physical Space usage - Percentage",
-          "range": false,
+          "range": true,
           "refId": "A"
         }
       ],
       "title": "Physical Space usage - Percentage",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 3,
-        "x": 14,
-        "y": 3
-      },
-      "id": 923,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "percentChangeColorMode": "standard",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "10.2.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "count(vast_nic_active{cluster=\"$cluster\", hostname=~\".*dn.*\"}) - sum(vast_nic_active{cluster=\"$cluster\", hostname=~\".*dn.*\"})",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Inactive NICs - DNodes",
       "type": "stat"
     },
     {
@@ -1165,10 +1051,10 @@
       "gridPos": {
         "h": 2,
         "w": 3,
-        "x": 11,
+        "x": 3,
         "y": 4
       },
-      "id": 273,
+      "id": 272,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
@@ -1186,291 +1072,45 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "vast_memory_raid_healthy{cluster=\"$cluster\"}",
+          "exemplar": true,
+          "expr": "vast_ssd_raid_healthy{cluster=\"$cluster\"}",
           "format": "time_series",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "interval": "",
-          "legendFormat": "Memory State",
-          "range": false,
+          "legendFormat": "SSD State",
           "refId": "A"
         }
       ],
-      "title": "Memory RAID State",
+      "title": "SSD RAID State",
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "center",
-            "cellOptions": {
-              "type": "auto",
-              "wrapText": true
-            },
-            "filterable": true,
-            "inspect": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "CRITICAL": {
-                  "color": "dark-red",
-                  "index": 0
-                },
-                "MAJOR": {
-                  "color": "dark-orange",
-                  "index": 1
-                },
-                "MINOR": {
-                  "color": "dark-yellow",
-                  "index": 2
-                }
-              },
-              "type": "value"
-            },
-            {
-              "options": {
-                "pattern": "(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}:\\d{2}:\\d{2})\\.\\d+Z",
-                "result": {
-                  "index": 3,
-                  "text": "$3-$2-$1 $4"
-                }
-              },
-              "type": "regex"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Severity"
-            },
-            "properties": [
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "color-background",
-                  "wrapText": false
-                }
-              },
-              {
-                "id": "custom.width",
-                "value": 301
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Alarm Message"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 747
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Object Type"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 177
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Object ID"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 102
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Object Name"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 451
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Timestamp - UTC"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 192
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Last Updated Timestamp - UTC"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 252
-              }
-            ]
-          }
-        ]
-      },
       "gridPos": {
-        "h": 5,
+        "h": 3,
         "w": 24,
         "x": 0,
         "y": 6
       },
-      "id": 950,
+      "id": 919,
       "options": {
-        "cellHeight": "sm",
-        "footer": {
-          "countRows": false,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
         },
-        "showHeader": true,
-        "sortBy": []
+        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Performance Metrics - Total</h1>\n",
+        "mode": "markdown"
       },
-      "pluginVersion": "10.2.3",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "vast_vms_alarms{cluster=\"$cluster\", severity=\"CRITICAL\"}",
-          "format": "table",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Critical Alarms",
-      "transformations": [
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true,
-              "Value": true,
-              "__name__": true,
-              "acknowledged": true,
-              "alarm_message": true,
-              "cluster": true,
-              "event": true,
-              "event_definition": true,
-              "event_type": true,
-              "id": true,
-              "instance": true,
-              "job": true,
-              "last_updated": false,
-              "metadata": true,
-              "object_guid": true,
-              "object_id": true,
-              "object_name": true,
-              "rel_obj_class": true,
-              "rel_obj_id": true,
-              "timestamp": false
-            },
-            "includeByName": {},
-            "indexByName": {
-              "acknowledged": 7,
-              "alarm_message": 6,
-              "cluster": 8,
-              "event": 9,
-              "event_definition": 10,
-              "event_name": 17,
-              "event_type": 11,
-              "id": 12,
-              "last_updated": 5,
-              "metadata": 13,
-              "object_guid": 14,
-              "object_id": 2,
-              "object_name": 3,
-              "object_type": 1,
-              "rel_obj_class": 15,
-              "rel_obj_id": 16,
-              "severity": 0,
-              "timestamp": 4
-            },
-            "renameByName": {
-              "acknowledged": "",
-              "alarm_message": "Alarm Message",
-              "event_name": "Event Name",
-              "last_updated": "Last Updated Timestamp - UTC",
-              "object_id": "Object ID",
-              "object_name": "Object Name",
-              "object_type": "Object Type",
-              "severity": "Severity",
-              "timestamp": "Timestamp - UTC"
-            }
-          }
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "field": "Severity"
-              }
-            ]
-          }
-        }
-      ],
-      "type": "table"
+      "pluginVersion": "11.5.1",
+      "type": "text"
     },
     {
       "datasource": {
@@ -1490,6 +1130,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -1506,7 +1147,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1572,10 +1213,10 @@
         ]
       },
       "gridPos": {
-        "h": 7,
+        "h": 5,
         "w": 13,
         "x": 0,
-        "y": 11
+        "y": 9
       },
       "id": 908,
       "options": {
@@ -1626,7 +1267,7 @@
           "refId": "B"
         }
       ],
-      "title": "Metadata IOPS",
+      "title": "Metadata IOPs",
       "type": "timeseries"
     },
     {
@@ -1634,7 +1275,6 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
-      "description": "Note that there might be seen spikes that don't reflect reality after cluster reboot. ",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1648,6 +1288,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -1682,59 +1323,66 @@
                 "value": null
               }
             ]
-          },
-          "unit": "Bps"
+          }
         },
         "overrides": [
           {
             "matcher": {
               "id": "byName",
-              "options": "Read Latency"
+              "options": "Write BW"
             },
             "properties": [
               {
+                "id": "unit",
+                "value": "binBps"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 2
+              },
+              {
+                "id": "custom.drawStyle",
+                "value": "line"
+              },
+              {
                 "id": "color",
                 "value": {
-                  "fixedColor": "semi-dark-green",
+                  "fixedColor": "orange",
                   "mode": "fixed"
                 }
-              },
-              {
-                "id": "custom.lineInterpolation",
-                "value": "smooth"
-              },
-              {
-                "id": "unit",
-                "value": "µs"
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "Write Latency"
+              "options": "Read BW"
             },
             "properties": [
               {
-                "id": "color",
-                "value": {
-                  "fixedColor": "yellow",
-                  "mode": "fixed"
-                }
+                "id": "unit",
+                "value": "binBps"
               },
               {
-                "id": "unit",
-                "value": "µs"
+                "id": "custom.lineWidth",
+                "value": 2
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
               }
             ]
           }
         ]
       },
       "gridPos": {
-        "h": 14,
+        "h": 12,
         "w": 11,
         "x": 13,
-        "y": 11
+        "y": 9
       },
       "id": 910,
       "options": {
@@ -1777,35 +1425,9 @@
           "legendFormat": "Write BW",
           "range": true,
           "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "rate(vast_cluster_metrics_ProtoMetrics_read_latency_sum{cluster=\"$cluster\", proto_name=\"ProtoAll\"}[$__rate_interval]) / rate(vast_cluster_metrics_ProtoMetrics_read_latency_count{cluster=\"$cluster\", proto_name=\"ProtoAll\"}[$__rate_interval])",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "Read Latency",
-          "range": true,
-          "refId": "C"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "rate(vast_cluster_metrics_ProtoMetrics_write_latency_sum{cluster=\"$cluster\", proto_name=\"ProtoAll\"}[$__rate_interval]) / rate(vast_cluster_metrics_ProtoMetrics_write_latency_count{cluster=\"$cluster\", proto_name=\"ProtoAll\"}[$__rate_interval])",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "Write Latency",
-          "range": true,
-          "refId": "E"
         }
       ],
-      "title": "Average Bandwidth & Latency",
+      "title": "Read + Write Bandwidth",
       "type": "timeseries"
     },
     {
@@ -1825,6 +1447,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -1841,7 +1464,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1910,10 +1533,9 @@
         "h": 7,
         "w": 13,
         "x": 0,
-        "y": 18
+        "y": 14
       },
       "id": 909,
-      "maxDataPoints": 1400,
       "options": {
         "legend": {
           "calcs": [
@@ -1943,7 +1565,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(vast_cluster_metrics_ProtoMetrics_read_size_count{cluster=\"$cluster\",proto_name=\"ProtoAll\"}[$__rate_interval]))",
+          "expr": "sum(rate(vast_cnode_metrics_ProtoMetrics_read_size_count{cluster=\"$cluster\",proto_name=\"ProtoAll\"}[$__rate_interval]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Read",
@@ -1957,7 +1579,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(vast_cluster_metrics_ProtoMetrics_write_size_count{cluster=\"$cluster\",proto_name=\"ProtoAll\"}[$__rate_interval]))",
+          "expr": "sum(rate(vast_cnode_metrics_ProtoMetrics_write_size_count{cluster=\"$cluster\",proto_name=\"ProtoAll\"}[$__rate_interval]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Write",
@@ -1965,7 +1587,7 @@
           "refId": "B"
         }
       ],
-      "title": "Read + Write IOPS",
+      "title": "Read + Write IOPs",
       "type": "timeseries"
     },
     {
@@ -1976,7 +1598,6 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "semi-dark-purple",
             "mode": "palette-classic"
           },
           "custom": {
@@ -1986,6 +1607,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -1997,12 +1619,12 @@
             "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 2,
-            "pointSize": 1,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "never",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -2011,12 +1633,23 @@
               "mode": "off"
             }
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
+                "color": "green",
                 "value": null
               }
             ]
@@ -2027,7 +1660,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "vast_user_read_latency"
+              "options": "Value"
             },
             "properties": [
               {
@@ -2038,13 +1671,61 @@
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "vast_user_write_latency"
+              "id": "byRegexp",
+              "options": "/NFSCommon.*/"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "µs"
+                "id": "displayName",
+                "value": "${__field.labels.hostname} - NFSv3"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/NFS4Common.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.hostname} - NFSv4"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/S3Common.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.hostname} - S3"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/SMBCommon.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.hostname} - SMB"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/ProtoAll.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.hostname} - Total"
               }
             ]
           }
@@ -2054,22 +1735,25 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 21
       },
-      "id": 912,
-      "maxDataPoints": 1400,
+      "id": 922,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "mean",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "multi",
-          "sort": "desc"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "11.5.1",
@@ -2080,15 +1764,15 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "rate(vast_cnode_metrics_ProtoMetrics_read_latency_sum{cluster=\"$cluster\", proto_name=\"ProtoAll\"}[$__rate_interval]) / rate(vast_cnode_metrics_ProtoMetrics_read_latency_count{cluster=\"$cluster\", proto_name=\"ProtoAll\"}[$__rate_interval])",
-          "hide": false,
-          "instant": false,
+          "exemplar": true,
+          "expr": "rate(vast_cnode_metrics_ProtoMetrics_read_latency_sum{cluster=\"$cluster\",proto_name=\"ProtoAll\"}[$__rate_interval]) / rate(vast_cnode_metrics_ProtoMetrics_read_latency_count{cluster=\"$cluster\", proto_name=\"ProtoAll\"}[$__rate_interval])",
+          "interval": "",
           "legendFormat": "{{hostname}}",
           "range": true,
-          "refId": "C"
+          "refId": "A"
         }
       ],
-      "title": "Average Read Latency Per CNode",
+      "title": "Read Latency Per CNode",
       "type": "timeseries"
     },
     {
@@ -2099,7 +1783,6 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "semi-dark-purple",
             "mode": "palette-classic"
           },
           "custom": {
@@ -2109,6 +1792,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -2120,12 +1804,12 @@
             "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 2,
-            "pointSize": 1,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
-            "spanNulls": false,
+            "showPoints": "never",
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -2134,12 +1818,24 @@
               "mode": "off"
             }
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -2149,7 +1845,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "vast_user_read_latency"
+              "options": "Value"
             },
             "properties": [
               {
@@ -2160,13 +1856,61 @@
           },
           {
             "matcher": {
-              "id": "byName",
-              "options": "vast_user_write_latency"
+              "id": "byRegexp",
+              "options": "/NFSCommon.*/"
             },
             "properties": [
               {
-                "id": "unit",
-                "value": "µs"
+                "id": "displayName",
+                "value": "${__field.labels.hostname} - NFSv3"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/NFS4Common.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.hostname} - NFSv4"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/S3Common.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.hostname} - S3"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/SMBCommon.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.hostname} - SMB"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/ProtoAll.*/"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "${__field.labels.hostname} - Total"
               }
             ]
           }
@@ -2176,22 +1920,25 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 29
       },
-      "id": 937,
-      "maxDataPoints": 1400,
+      "id": 923,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "mean",
+            "max",
+            "min"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
-          "showLegend": false
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "multi",
-          "sort": "desc"
+          "mode": "single",
+          "sort": "none"
         }
       },
       "pluginVersion": "11.5.1",
@@ -2202,20 +1949,20 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "rate(vast_cnode_metrics_ProtoMetrics_write_latency_sum{cluster=\"$cluster\", proto_name=\"ProtoAll\"}[$__rate_interval]) / rate(vast_cnode_metrics_ProtoMetrics_write_latency_count{cluster=\"$cluster\", proto_name=\"ProtoAll\"}[$__rate_interval])",
-          "hide": false,
-          "instant": false,
+          "exemplar": true,
+          "expr": "rate(vast_cnode_metrics_ProtoMetrics_write_latency_sum{cluster=\"$cluster\",proto_name=\"ProtoAll\"}[$__rate_interval]) / rate(vast_cnode_metrics_ProtoMetrics_write_latency_count{cluster=\"$cluster\", proto_name=\"ProtoAll\"}[$__rate_interval])",
+          "interval": "",
           "legendFormat": "{{hostname}}",
           "range": true,
-          "refId": "C"
+          "refId": "A"
         }
       ],
-      "title": "Average Write Latency Per CNode",
+      "title": "Write Latency Per CNode",
       "type": "timeseries"
     }
   ],
   "refresh": "",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [
     "VAST"
   ],
@@ -2227,21 +1974,18 @@
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "label_values(vast_cluster_drr,cluster)",
-        "hide": 0,
+        "definition": "label_values(vast_cluster_online,cluster)",
         "includeAll": false,
         "label": "Cluster",
-        "multi": false,
         "name": "cluster",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(vast_cluster_drr,cluster)",
+          "query": "label_values(vast_cluster_online,cluster)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       },
@@ -2251,28 +1995,26 @@
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "label_values(vast_cnode_active{cluster=\"$cluster\"},instance)",
+        "definition": "label_values(vast_user_total_bw,name)",
         "hide": 2,
-        "includeAll": false,
-        "label": "Cluster IP",
-        "multi": false,
-        "name": "cluster_ip",
+        "includeAll": true,
+        "label": "User",
+        "multi": true,
+        "name": "user",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(vast_cnode_active{cluster=\"$cluster\"},instance)",
+          "query": "label_values(vast_user_total_bw,name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -2288,9 +2030,9 @@
       "1d"
     ]
   },
-  "timezone": "browser",
+  "timezone": "Asia/Jerusalem",
   "title": "VAST Cluster Statistics - Main",
-  "uid": "monitoringmain",
-  "version": 4,
+  "uid": "vastmain",
+  "version": 8,
   "weekStart": ""
 }

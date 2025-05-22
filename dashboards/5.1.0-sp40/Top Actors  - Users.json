@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "10.2.3"
+      "version": "11.5.1"
     },
     {
       "type": "datasource",
@@ -69,58 +69,15 @@
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "Performance"
-      ],
-      "targetBlank": false,
-      "title": "Performance",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "Switches"
-      ],
-      "targetBlank": false,
-      "title": "NICs & Switches",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "Logs"
-      ],
-      "targetBlank": false,
-      "title": "Logs",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": false,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
         "VAST"
       ],
       "targetBlank": false,
-      "title": "Main",
+      "title": "Switch Dashboard",
       "tooltip": "",
       "type": "dashboards",
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "gridPos": {
@@ -139,7 +96,7 @@
         "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per User Performance Metrics - Top N</h1>\n<p style=\"text-align: center;\">Please note that the exact number of users shown here is dependant on the chosen time range. <br>\nFor a larger time range, there might be shown more users than the chosen number, since there's a higher chance that the most active users were changed over time.\n</p>",
         "mode": "markdown"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "11.5.1",
       "type": "text"
     },
     {
@@ -160,6 +117,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -176,7 +134,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -208,10 +166,8 @@
       "id": 901,
       "options": {
         "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -222,7 +178,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -230,7 +186,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_user_read_bw{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_read_bw{cluster=\"$cluster\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "{{name}} {{uid}}",
@@ -259,6 +215,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -275,7 +232,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -296,7 +253,32 @@
           },
           "unit": "MBs"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "root "
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 11,
@@ -307,10 +289,8 @@
       "id": 896,
       "options": {
         "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -321,7 +301,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -329,7 +309,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_user_write_bw{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_write_bw{cluster=\"$cluster\"})",
           "instant": false,
           "legendFormat": "{{name}} {{uid}}",
           "range": true,
@@ -357,6 +337,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -373,7 +354,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -430,10 +411,8 @@
       "id": 903,
       "options": {
         "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -444,7 +423,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -452,7 +431,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_user_read_latency{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_read_latency{cluster=\"$cluster\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "{{name}} {{uid}}",
@@ -481,6 +460,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -497,7 +477,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -529,10 +509,8 @@
       "id": 904,
       "options": {
         "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -543,7 +521,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -551,7 +529,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_user_write_latency{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_write_latency{cluster=\"$cluster\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "{{name}} {{uid}}",
@@ -597,7 +575,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -622,7 +600,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -640,7 +619,9 @@
       "options": {
         "legend": {
           "calcs": [
-            "max"
+            "mean",
+            "max",
+            "min"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -649,11 +630,11 @@
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "multi",
+          "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -662,7 +643,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk($k, vast_user_read_md_iops{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_read_md_iops{cluster=\"$cluster\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}} {{uid}}",
@@ -670,7 +651,7 @@
           "refId": "A"
         }
       ],
-      "title": "Read Metadata IOPS",
+      "title": "Read Metadata IOPs",
       "type": "timeseries"
     },
     {
@@ -708,7 +689,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -733,7 +714,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -751,7 +733,9 @@
       "options": {
         "legend": {
           "calcs": [
-            "max"
+            "mean",
+            "max",
+            "min"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -760,11 +744,11 @@
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "multi",
+          "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -772,7 +756,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_user_write_md_iops{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_write_md_iops{cluster=\"$cluster\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "{{name}} {{uid}}",
@@ -780,7 +764,7 @@
           "refId": "B"
         }
       ],
-      "title": "Write Metadata IOPS",
+      "title": "Write Metadata IOPs",
       "type": "timeseries"
     },
     {
@@ -817,7 +801,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -860,7 +844,9 @@
       "options": {
         "legend": {
           "calcs": [
-            "max"
+            "mean",
+            "max",
+            "min"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -871,11 +857,11 @@
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "multi",
+          "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -884,7 +870,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk($k, vast_user_read_iops{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_read_iops{cluster=\"$cluster\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}} {{uid}}",
@@ -892,7 +878,7 @@
           "refId": "A"
         }
       ],
-      "title": "Read IOPS",
+      "title": "Read IOPs",
       "type": "timeseries"
     },
     {
@@ -929,7 +915,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": false,
+            "spanNulls": true,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -972,7 +958,9 @@
       "options": {
         "legend": {
           "calcs": [
-            "max"
+            "mean",
+            "max",
+            "min"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -983,11 +971,11 @@
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "multi",
+          "mode": "single",
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -996,7 +984,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk($k, vast_user_write_iops{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_write_iops{cluster=\"$cluster\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}} {{uid}}",
@@ -1004,14 +992,14 @@
           "refId": "B"
         }
       ],
-      "title": "Write IOPS",
+      "title": "Write IOPs",
       "type": "timeseries"
     }
   ],
   "refresh": "",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [
-    "Performance"
+    "VAST"
   ],
   "templating": {
     "list": [
@@ -1022,10 +1010,8 @@
           "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cluster_online,cluster)",
-        "hide": 0,
         "includeAll": false,
         "label": "Cluster",
-        "multi": false,
         "name": "cluster",
         "options": [],
         "query": {
@@ -1035,20 +1021,16 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "5",
           "value": "5"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Amount of Users to Display",
-        "multi": false,
         "name": "k",
         "options": [
           {
@@ -1083,61 +1065,12 @@
           }
         ],
         "query": "2, 5, 10, 20, 50, 100",
-        "skipUrlSync": false,
         "type": "custom"
-      },
-      {
-        "current": {},
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
-        },
-        "definition": "label_values(vast_cluster_drr{cluster=\"$cluster\"},instance)",
-        "hide": 2,
-        "includeAll": false,
-        "multi": false,
-        "name": "cluster_ip",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(vast_cluster_drr{cluster=\"$cluster\"},instance)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
-      },
-      {
-        "allValue": ".*",
-        "current": {},
-        "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
-        },
-        "definition": "label_values(vast_user_bw{cluster=~\"$cluster\"},more_info)",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Tenant",
-        "multi": true,
-        "name": "tenant",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values(vast_user_bw{cluster=~\"$cluster\"},more_info)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1153,9 +1086,9 @@
       "1d"
     ]
   },
-  "timezone": "",
+  "timezone": "Asia/Jerusalem",
   "title": "Top Actors  - Users",
-  "uid": "monitoringusers",
-  "version": 1,
+  "uid": "vasttopactors",
+  "version": 5,
   "weekStart": ""
 }

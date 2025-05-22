@@ -89,20 +89,6 @@
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "Switches"
-      ],
-      "targetBlank": false,
-      "title": "NICs & Switches",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
         "Logs"
       ],
       "targetBlank": false,
@@ -1351,7 +1337,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -1370,6 +1356,6 @@
   "timezone": "",
   "title": "Capacity  Utilization",
   "uid": "monitoringcapacity",
-  "version": 1,
+  "version": 5,
   "weekStart": ""
 }

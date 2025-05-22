@@ -77,20 +77,6 @@
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "Switches"
-      ],
-      "targetBlank": false,
-      "title": "NICs & Switches",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
         "Logs"
       ],
       "targetBlank": false,
@@ -675,6 +661,8 @@
         "y": 11
       },
       "id": 395,
+      "interval": "15s",
+      "maxDataPoints": 40000,
       "options": {
         "legend": {
           "calcs": [
@@ -848,6 +836,7 @@
         "y": 11
       },
       "id": 396,
+      "maxDataPoints": 40000,
       "options": {
         "legend": {
           "calcs": [
@@ -1033,6 +1022,8 @@
         "y": 11
       },
       "id": 43,
+      "interval": "15s",
+      "maxDataPoints": 40000,
       "options": {
         "legend": {
           "calcs": [
@@ -1205,6 +1196,7 @@
         "y": 20
       },
       "id": 885,
+      "maxDataPoints": 40000,
       "options": {
         "legend": {
           "calcs": [
@@ -1378,6 +1370,8 @@
         "y": 20
       },
       "id": 888,
+      "interval": "15s",
+      "maxDataPoints": 40000,
       "options": {
         "legend": {
           "calcs": [
@@ -1563,6 +1557,8 @@
         "y": 20
       },
       "id": 889,
+      "interval": "15s",
+      "maxDataPoints": 40000,
       "options": {
         "legend": {
           "calcs": [
@@ -1617,7 +1613,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -1736,6 +1731,7 @@
         "y": 28
       },
       "id": 886,
+      "maxDataPoints": 40000,
       "options": {
         "legend": {
           "calcs": [
@@ -1791,7 +1787,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -1910,6 +1905,7 @@
         "y": 28
       },
       "id": 893,
+      "maxDataPoints": 400000,
       "options": {
         "legend": {
           "calcs": [
@@ -2070,16 +2066,22 @@
             "selected": false,
             "text": "SMB",
             "value": "SMBCommon"
+          },
+          {
+            "selected": false,
+            "text": "Replication",
+            "value": "ReplicationCommon"
           }
         ],
-        "query": "NFSv3 : NFSCommon, NFSv4 : NFS4Common, S3 : S3Common, SMB : SMBCommon",
+        "query": "NFSv3 : NFSCommon, NFSv4 : NFS4Common, S3 : S3Common, SMB : SMBCommon, Replication : ReplicationCommon",
+        "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -2095,7 +2097,7 @@
       "1d"
     ]
   },
-  "timezone": "",
+  "timezone": "browser",
   "title": "CNodes",
   "uid": "monitoringcnodes",
   "version": 2,

@@ -71,20 +71,6 @@
       "includeVars": true,
       "keepTime": true,
       "tags": [
-        "Switches"
-      ],
-      "targetBlank": false,
-      "title": "NICs & Switches",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
         "Logs"
       ],
       "targetBlank": false,
@@ -244,7 +230,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 318
+                "value": 435
               }
             ]
           },
@@ -432,13 +418,13 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Alarms",
   "uid": "cea5vofd52rcwa",
-  "version": 3,
+  "version": 2,
   "weekStart": ""
 }

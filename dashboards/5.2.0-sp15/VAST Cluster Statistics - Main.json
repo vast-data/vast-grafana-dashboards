@@ -99,20 +99,6 @@
       "url": ""
     },
     {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "Switches"
-      ],
-      "targetBlank": false,
-      "title": "NICs & Switches",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
       "asDropdown": false,
       "icon": "external link",
       "includeVars": true,
@@ -120,8 +106,8 @@
       "tags": [
         "VAST"
       ],
-      "targetBlank": true,
-      "title": "main",
+      "targetBlank": false,
+      "title": "Main",
       "tooltip": "",
       "type": "dashboards",
       "url": ""
@@ -1342,7 +1328,7 @@
             "properties": [
               {
                 "id": "custom.width",
-                "value": 192
+                "value": 423
               }
             ]
           },
@@ -2272,7 +2258,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {
@@ -2291,6 +2277,6 @@
   "timezone": "browser",
   "title": "VAST Cluster Statistics - Main",
   "uid": "monitoringmain",
-  "version": 4,
+  "version": 2,
   "weekStart": ""
 }

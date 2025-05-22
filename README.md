@@ -141,7 +141,7 @@ scrape_configs:
 `/api/prometheusmetrics/defrag` - Exports metrics related to defragmentation. <br>
 `/api/prometheusmetrics/vips` - Exports vip / vipool performance metrics, including a metric that provides mapping of CNode, vip and vippool. <br>
 `/api/prometheusmetrics/user_view` - Exports performance metrics per user and view. Supported on version 5.2-sp15 and later. <br>
-`/api/prometheusmetrics/nics` - Provides information on NICs state and errors (for example - out of sequence, out of buffers and symbol errors). <br>
+`/api/prometheusmetrics/nics` - Provides information on NICs state and errors (for example - out of sequence, out of buffers and symbol errors). Supported on versions 5.2-sp20 and later.<br>
 `/api/prometheusmetrics/` - Exports cluster and CNode metrics that are not exported by the above-listed endpoints. This includes, for example, performance metrics per storage protocol. <br>
 `/api/prometheusmetrics/all` - Exports all VAST Cluster metrics. This includes each and every metrics that can be exported by the above-listed exporter endpoints. Due to big amount of data being exported, using this endpoint to collect metrics from a large cluster is not recommended. <br>
 ``

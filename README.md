@@ -125,18 +125,18 @@ scrape_configs:
       insecure_skip_verify: true
 ```
 ### Supported Metrics Endpoints
-`/api/prometheusmetrics/alarms` - Exports all active VAST cluster alarms.
-`/api/prometheusmetrics/users` - Exports user bandwidth, IOPS and metadata IOPS metrics on read and/or write operations.
-`/api/prometheusmetrics/views` - Exports performance metrics per view, including bandwidth, IOPS, metadata IOPS, latency and QoS, and also view logical and physical capacity.
-`/api/prometheusmetrics/quotas` - Provides information related to quotas configured on the cluster, such as the quota limits set and number of users who have exceeded the quota or who have been blocked due to quota exceeded condition.
-`/api/prometheusmetrics/replications` - Provides information related to replication streams - Replication stream state, RPO and RPO offset, bandwidth, logical and physical backlog. Supported on versions 5.2-sp10 and later.
-`/api/prometheusmetrics/devices` - Provides information about the SSD or NVRAM physical state, such as presence of media errors or current temperature, and overall operational status (active or failed).
-`/api/prometheusmetrics/defrag` - Exports metrics related to defragmentation.
-`/api/prometheusmetrics/vips` - Exports vip / vipool performance metrics, including a metric that provides mapping of CNode, vip and vippool.
-`/api/prometheusmetrics/user_view` - Exports performance metrics per user and view. Supported on version 5.2-sp15 and later.
-`/api/prometheusmetrics/nics` - Provides information on NICs state and errors (for example - out of sequence, out of buffers and symbol errors).
-`/api/prometheusmetrics/` - Exports cluster and CNode metrics that are not exported by the above-listed endpoints. This includes, for example, performance metrics per storage protocol.
-`/api/prometheusmetrics/all` - Exports all VAST Cluster metrics. This includes each and every metrics that can be exported by the above-listed exporter endpoints. Due to big amount of data being exported, using this endpoint to collect metrics from a large cluster is not recommended.
+`/api/prometheusmetrics/alarms` - Exports all active VAST cluster alarms. <br>
+`/api/prometheusmetrics/users` - Exports user bandwidth, IOPS and metadata IOPS metrics on read and/or write operations. <br>
+`/api/prometheusmetrics/views` - Exports performance metrics per view, including bandwidth, IOPS, metadata IOPS, latency and QoS, and also view logical and physical capacity. <br>
+`/api/prometheusmetrics/quotas` - Provides information related to quotas configured on the cluster, such as the quota limits set and number of users who have exceeded the quota or who have been blocked due to quota exceeded condition. <br>
+`/api/prometheusmetrics/replications` - Provides information related to replication streams - Replication stream state, RPO and RPO offset, bandwidth, logical and physical backlog. Supported on versions 5.2-sp10 and later. <br>
+`/api/prometheusmetrics/devices` - Provides information about the SSD or NVRAM physical state, such as presence of media errors or current temperature, and overall operational status (active or failed). <br>
+`/api/prometheusmetrics/defrag` - Exports metrics related to defragmentation. <br>
+`/api/prometheusmetrics/vips` - Exports vip / vipool performance metrics, including a metric that provides mapping of CNode, vip and vippool. <br>
+`/api/prometheusmetrics/user_view` - Exports performance metrics per user and view. Supported on version 5.2-sp15 and later. <br>
+`/api/prometheusmetrics/nics` - Provides information on NICs state and errors (for example - out of sequence, out of buffers and symbol errors). <br>
+`/api/prometheusmetrics/` - Exports cluster and CNode metrics that are not exported by the above-listed endpoints. This includes, for example, performance metrics per storage protocol. <br>
+`/api/prometheusmetrics/all` - Exports all VAST Cluster metrics. This includes each and every metrics that can be exported by the above-listed exporter endpoints. Due to big amount of data being exported, using this endpoint to collect metrics from a large cluster is not recommended. <br>
 ``
 
 

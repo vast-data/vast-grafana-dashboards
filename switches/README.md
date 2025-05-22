@@ -8,13 +8,13 @@ This document explains how to set up monitoring for Cumulus Linux switches versi
 
 * [OTEL Monitoring Setup](#otel-monitoring-setup)
 
-  * [Clush Configuration](#clush-configuration)
-  * [OTEL Collector Configuration (Server-Side)](#otel-collector-configuration-server-side)
-  * [Switch-Side OTEL Configuration](#switch-side-otel-configuration)
+  - [Clush Configuration](#clush-configuration)
+  - [OTEL Collector Configuration (Server-Side)](#otel-collector-configuration-server-side)
+  - [Switch-Side OTEL Configuration](#switch-side-otel-configuration)
 * [Prometheus Exporter Setup](#prometheus-exporter-setup)
 
-  * [Prometheus Configuration](#prometheus-configuration)
-  * [Custom Exporter Script](#custom-exporter-script)
+  - [Prometheus Configuration](#prometheus-configuration)
+  - [Custom Exporter Script](#custom-exporter-script)
 * [Grafana Dashboard Guidelines](#grafana-dashboard-guidelines)
 
 ---

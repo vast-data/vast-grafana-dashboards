@@ -17,6 +17,8 @@ Here you may find dashboards that provide statistics and visualisations based on
 * NICs State
 * Switches State (supported for cumulus switches version 5.12.1 and later - see explanation below)
 
+  A snippet from the main dashboard -
+
 ![image](https://github.com/user-attachments/assets/68e5e41a-d39f-4d95-ae58-d919bcd4a33e)
 
 Navigation between the dashboards is done through the buttons located at the right top corner of every dashboard -

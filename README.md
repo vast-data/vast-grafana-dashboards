@@ -149,4 +149,4 @@ Our monitoring solution supports **NVIDIA Cumulus switches (v5.12.1 and later)**
 
 Both components export to Prometheus and are visualized in the **"Switches State"** Grafana dashboard.
 
-📄 For complete setup instructions, see [SWITCH\_MONITORING.md](./SWITCH_MONITORING.md)
+📄 For complete setup instructions, see [switch\_monitoring.md](../README.md)

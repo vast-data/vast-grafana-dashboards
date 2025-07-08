@@ -140,7 +140,7 @@ clush -g switches -l cumulus -o "-q" "nv config apply" --assume-yes
 > **Notes:**
 >
 > * Replace `<public-key-data>` with the actual key data.
-> * To skip TLS, use `nv set system telemetry export otlp grpc insecure enabled` instead.
+> * To skip TLS, skip line `nv action import system security ca-certificate tls-cert data """<public-key-data>"""`, and use `nv set system telemetry export otlp grpc insecure enabled` instead of `nv set system telemetry export otlp grpc cert-id tls-cert`.
 > * Replace `<host_ip>` and `<cluster_name>` accordingly.
 
 ---

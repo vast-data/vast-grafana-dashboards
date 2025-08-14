@@ -109,7 +109,7 @@ class SwitchMetricsCollector:
                 child.expect(r'\$')
             return child
         except Exception as e:
-            print(f"Failed connecting {collector.ip}: str{e}")
+            print(f"Failed connecting {self.ip}: str{e}")
 
 
 def extract_switch_details():

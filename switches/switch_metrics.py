@@ -3,7 +3,6 @@ import time
 import warnings
 import pexpect
 import re
-import ast
 from concurrent.futures import ThreadPoolExecutor
 import argparse
 import sys

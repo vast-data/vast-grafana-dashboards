@@ -3,7 +3,6 @@ import time
 import warnings
 import pexpect
 import re
-import ast
 from concurrent.futures import ThreadPoolExecutor
 import argparse
 import sys
@@ -109,7 +108,7 @@ class SwitchMetricsCollector:
                 child.expect(r'\$')
             return child
         except Exception as e:
-            print(f"Failed connecting {collector.ip}: str{e}")
+            print(f"Failed connecting {self.ip}: str{e}")
 
 
 def extract_switch_details():

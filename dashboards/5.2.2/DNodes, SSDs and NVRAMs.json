@@ -1,11 +1,42 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.1+security-01"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "enable": true,
         "hide": true,
@@ -24,7 +55,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 5,
+  "id": null,
   "links": [
     {
       "asDropdown": true,
@@ -100,7 +131,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -196,7 +227,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -213,7 +244,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -309,7 +340,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -326,7 +357,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -423,7 +454,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -440,7 +471,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -537,7 +568,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -554,7 +585,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -638,7 +669,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_ssd_metrics_Hardware_endurance{cluster=\"$cluster\"}",
@@ -653,7 +684,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -737,7 +768,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_nvram_metrics_Hardware_endurance{cluster=\"$cluster\"}",
@@ -765,7 +796,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -847,7 +878,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "100 * vast_cluster_physical_space_in_use{cluster=\"$cluster\"}/ vast_cluster_physical_space{cluster=\"$cluster\"}",
@@ -862,7 +893,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -960,7 +991,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -977,7 +1008,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -1075,7 +1106,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1092,7 +1123,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -1190,7 +1221,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1207,7 +1238,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -1305,7 +1336,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1322,7 +1353,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -1420,7 +1451,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1437,7 +1468,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -1535,7 +1566,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1550,7 +1581,6 @@
       "type": "timeseries"
     }
   ],
-  "preload": false,
   "refresh": "",
   "schemaVersion": 41,
   "tags": [
@@ -1559,13 +1589,10 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "text": "Bonzo-02",
-          "value": "Bonzo-02"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cluster_online,cluster)",
         "includeAll": false,
@@ -1584,7 +1611,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1603,5 +1630,6 @@
   "timezone": "utc",
   "title": "DNodes, SSDs and NVRAMs",
   "uid": "monitoringdnodes",
-  "version": 4
+  "version": 4,
+  "weekStart": ""
 }

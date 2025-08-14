@@ -1,11 +1,54 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.1+security-01"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
         "builtIn": 1,
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "enable": true,
         "hide": true,
@@ -25,7 +68,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 18,
+  "id": null,
   "links": [
     {
       "asDropdown": true,
@@ -88,7 +131,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -153,7 +196,11 @@
           "expr": "vast_cluster_online{cluster=~\"$cluster\"}",
           "legendFormat": "__auto",
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         }
       ],
       "title": "Cluster Version",
@@ -173,7 +220,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -225,7 +272,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -239,7 +286,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -258,7 +305,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -326,7 +373,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -346,7 +393,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -398,7 +445,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -415,7 +462,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Click to see all alarms",
       "fieldConfig": {
@@ -522,7 +569,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -566,7 +613,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -634,7 +681,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -654,7 +701,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -726,12 +773,16 @@
           "instant": true,
           "legendFormat": "Similarity",
           "range": false,
-          "refId": "A"
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
         },
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_cluster_encryption_enabled{cluster=~\"$cluster\"}",
@@ -748,7 +799,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -837,7 +888,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -855,7 +906,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -907,7 +958,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -924,7 +975,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -992,7 +1043,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1012,7 +1063,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1060,7 +1111,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1074,7 +1125,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1087,7 +1138,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1101,7 +1152,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1119,7 +1170,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1171,7 +1222,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1185,7 +1236,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1198,7 +1249,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1212,7 +1263,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1230,7 +1281,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1282,7 +1333,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1296,7 +1347,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1309,7 +1360,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1323,7 +1374,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1341,7 +1392,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1514,7 +1565,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -1604,7 +1655,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1754,7 +1805,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1768,7 +1819,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_cluster_metrics_ProtoMetrics_wr_md_iops{cluster=\"$cluster\",proto_name=\"ProtoCommon\"}",
@@ -1785,7 +1836,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -1909,7 +1960,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(rate(vast_cnode_metrics_ProtoMetrics_read_size_sum{cluster=\"$cluster\", proto_name=\"ProtoCommon\"}[$__rate_interval]))",
@@ -1922,7 +1973,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "sum(rate(vast_cnode_metrics_ProtoMetrics_write_size_sum{cluster=\"$cluster\", proto_name=\"ProtoCommon\"}[$__rate_interval]))",
@@ -1938,7 +1989,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2090,7 +2141,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2104,7 +2155,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2122,7 +2173,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2228,7 +2279,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_cnode_metrics_ProtoMetrics_read_latency_sum{cluster=\"$cluster\", proto_name=\"ProtoCommon\"}[$__rate_interval]) / rate(vast_cnode_metrics_ProtoMetrics_read_latency_count{cluster=\"$cluster\", proto_name=\"ProtoCommon\"}[$__rate_interval])",
@@ -2245,7 +2296,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2351,7 +2402,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_cnode_metrics_ProtoMetrics_write_latency_sum{cluster=\"$cluster\", proto_name=\"ProtoCommon\"}[$__rate_interval]) / rate(vast_cnode_metrics_ProtoMetrics_write_latency_count{cluster=\"$cluster\", proto_name=\"ProtoCommon\"}[$__rate_interval])",
@@ -2366,7 +2417,6 @@
       "type": "timeseries"
     }
   ],
-  "preload": false,
   "refresh": "",
   "schemaVersion": 41,
   "tags": [
@@ -2375,13 +2425,10 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "text": "Bonzo-02",
-          "value": "Bonzo-02"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cluster_drr,cluster)",
         "includeAll": false,
@@ -2399,13 +2446,10 @@
         "type": "query"
       },
       {
-        "current": {
-          "text": "10.27.200.60:443",
-          "value": "10.27.200.60:443"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cnode_active{cluster=\"$cluster\"},instance)",
         "hide": 2,
@@ -2425,7 +2469,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -2444,5 +2488,6 @@
   "timezone": "utc",
   "title": "VAST Cluster Statistics - Main",
   "uid": "monitoringmain",
-  "version": 22
+  "version": 22,
+  "weekStart": ""
 }

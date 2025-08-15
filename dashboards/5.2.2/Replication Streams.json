@@ -250,6 +250,31 @@
               "state": "State"
             }
           }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "State": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Stream Name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Stream Role": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "name": {
+                "aggregations": []
+              },
+              "source_role": {
+                "aggregations": []
+              }
+            }
+          }
         }
       ],
       "type": "table"
@@ -942,13 +967,13 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "utc",
   "title": "Replication Streams",
   "uid": "ceeqoqkhem41se",
-  "version": 5,
+  "version": 7,
   "weekStart": ""
 }

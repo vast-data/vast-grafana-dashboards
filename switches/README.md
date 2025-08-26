@@ -178,7 +178,7 @@ Replace `<exporter_ip>` with your OTEL server/exporter IP.
 
 ```python
 from vastpy import VASTClient
-client = VASTClient(username="<vms-username>", pasword="<vms-password>", address="<vms-ip>")
+client = VASTClient(user="<vms-username>", password="<vms-password>", address="<vms-ip>")
 client.switches.post(ip="<switch-ip>", username="<switch-username>", password="<switch-password>", role="spine")
 ```
 

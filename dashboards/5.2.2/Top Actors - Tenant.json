@@ -1,4 +1,41 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.2.3"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -18,7 +55,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 15,
+  "id": null,
   "links": [
     {
       "asDropdown": true,
@@ -30,20 +67,6 @@
       ],
       "targetBlank": false,
       "title": "Performance",
-      "tooltip": "",
-      "type": "dashboards",
-      "url": ""
-    },
-    {
-      "asDropdown": true,
-      "icon": "external link",
-      "includeVars": true,
-      "keepTime": true,
-      "tags": [
-        "Switches"
-      ],
-      "targetBlank": true,
-      "title": "NICs & Switches",
       "tooltip": "",
       "type": "dashboards",
       "url": ""
@@ -77,12 +100,9 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "gridPos": {
         "h": 4,
         "w": 24,
@@ -99,14 +119,13 @@
         "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per Tenant Performance Metrics - Top N</h1>\n<p style=\"text-align: center;\">Please note that the exact number of tenants shown here is dependant on the chosen time range. <br>\nFor a larger time range, there might be shown more tenants than the chosen number, since there's a higher chance that the most active tenants were changed over time.\n</p>",
         "mode": "markdown"
       },
-      "pluginVersion": "12.0.1+security-01",
-      "title": "",
+      "pluginVersion": "10.2.3",
       "type": "text"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -121,7 +140,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -152,7 +170,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -183,12 +202,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_read_bw_sum{cluster=\"$cluster\", tenant=~\"$tenant\"}[$__rate_interval]))",
@@ -205,7 +224,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -220,7 +239,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -251,7 +269,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -282,12 +301,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_write_bw_sum{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]))",
@@ -303,7 +322,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -318,7 +337,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -349,7 +367,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -380,12 +399,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_read_latency_sum{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]) / rate(vast_tenant_metrics_TenantMetrics_read_latency_count{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]))",
@@ -402,7 +421,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -417,7 +436,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -448,7 +466,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -479,12 +498,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "topk($k, vast_tenant_metrics_TenantMetrics_write_latency_avg{cluster=\"$cluster\", name=~\"$tenant\"})",
@@ -501,7 +520,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -515,7 +534,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -557,7 +575,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -590,12 +609,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -613,7 +632,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -627,7 +646,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -669,7 +687,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -702,12 +721,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -725,7 +744,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -818,7 +837,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -836,7 +855,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -929,7 +948,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_write_md_iops_avg{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]))",
@@ -944,25 +963,23 @@
       "type": "timeseries"
     }
   ],
-  "preload": false,
   "refresh": "",
-  "schemaVersion": 41,
+  "schemaVersion": 39,
   "tags": [
     "Performance"
   ],
   "templating": {
     "list": [
       {
-        "current": {
-          "text": "Bonzo-02",
-          "value": "Bonzo-02"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cluster_drr,cluster)",
+        "hide": 0,
         "includeAll": false,
+        "multi": false,
         "name": "cluster",
         "options": [],
         "query": {
@@ -972,20 +989,20 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
-        "current": {
-          "text": "10.27.200.60:443",
-          "value": "10.27.200.60:443"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cluster_drr{cluster=\"$cluster\"},instance)",
         "hide": 2,
         "includeAll": false,
+        "multi": false,
         "name": "cluster_ip",
         "options": [],
         "query": {
@@ -995,15 +1012,20 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
         "current": {
+          "selected": false,
           "text": "100",
           "value": "100"
         },
+        "hide": 0,
         "includeAll": false,
         "label": "Amount of Tenants to Display",
+        "multi": false,
         "name": "k",
         "options": [
           {
@@ -1033,23 +1055,18 @@
           }
         ],
         "query": "2, 5, 10, 50, 100",
+        "skipUrlSync": false,
         "type": "custom"
       },
       {
         "allValue": ".*",
-        "current": {
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_tenant_metrics_TenantMetrics_read_bw_avg{cluster=\"$cluster\"},name)",
+        "hide": 0,
         "includeAll": true,
         "label": "Tenant",
         "multi": true,
@@ -1062,6 +1079,8 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       }
     ]
@@ -1074,5 +1093,6 @@
   "timezone": "Europe/London",
   "title": "Top Actors - Tenant",
   "uid": "eee8g280l7vggd",
-  "version": 1
+  "version": 4,
+  "weekStart": ""
 }

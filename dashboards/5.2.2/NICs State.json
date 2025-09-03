@@ -1,4 +1,41 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.2.3"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -18,7 +55,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 7,
+  "id": null,
   "links": [
     {
       "asDropdown": true,
@@ -77,11 +114,12 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -118,7 +156,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "semi-dark-red",
@@ -275,12 +314,12 @@
           }
         ]
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -312,7 +351,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -348,7 +387,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -395,12 +435,12 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -455,7 +495,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -469,7 +509,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 5,
             "gradientMode": "none",
@@ -500,7 +539,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -527,12 +567,12 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_out_of_buffer{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -549,7 +589,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -563,7 +603,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 5,
             "gradientMode": "none",
@@ -594,7 +633,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -621,12 +661,12 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_out_of_sequence{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -643,7 +683,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -658,7 +698,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -700,7 +739,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -730,12 +770,12 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_rx_crc_errors_phy{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -752,7 +792,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -767,7 +807,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -809,7 +848,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -839,12 +879,12 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_t_pause{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -861,7 +901,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "",
       "fieldConfig": {
@@ -877,7 +917,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -919,7 +958,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -949,12 +989,12 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_local_ack_timeout_err{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -971,7 +1011,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -986,7 +1026,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -1028,7 +1067,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           }
@@ -1058,12 +1098,12 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_jittering_cable{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -1080,7 +1120,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1156,7 +1196,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_rx_symbol_err_phy{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -1173,7 +1213,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1264,7 +1304,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_duplicate_request{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -1281,7 +1321,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1357,7 +1397,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_tx_errors_phy{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -1374,7 +1414,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1465,7 +1505,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_rnr_nak_retry_err{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -1482,7 +1522,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1558,7 +1598,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_rx_in_range_len_errors_phy{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -1575,7 +1615,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1666,7 +1706,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "rate(vast_nic_metrics_Hardware_rx_buff_alloc_err{cluster=\"$cluster\", hostname=~\"$cn\"}[$__rate_interval])",
@@ -1683,7 +1723,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1835,7 +1875,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -1852,7 +1892,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2004,7 +2044,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "exemplar": true,
@@ -2019,27 +2059,25 @@
       "type": "timeseries"
     }
   ],
-  "preload": false,
   "refresh": "",
-  "schemaVersion": 41,
+  "schemaVersion": 39,
   "tags": [
     "Switches"
   ],
   "templating": {
     "list": [
       {
-        "current": {
-          "text": "Bonzo-02",
-          "value": "Bonzo-02"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cluster_online{cluster!=\"VAIS24494900\"},cluster)",
         "description": "",
+        "hide": 0,
         "includeAll": false,
         "label": "Cluster",
+        "multi": false,
         "name": "cluster",
         "options": [],
         "query": {
@@ -2049,22 +2087,18 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
-        "current": {
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_nic_active{cluster=\"$cluster\"},hostname)",
+        "hide": 0,
         "includeAll": true,
         "label": "Node",
         "multi": true,
@@ -2077,6 +2111,8 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       }
     ]
@@ -2089,5 +2125,6 @@
   "timezone": "",
   "title": "NICs State",
   "uid": "cebahck2y2ubka",
-  "version": 1
+  "version": 2,
+  "weekStart": ""
 }

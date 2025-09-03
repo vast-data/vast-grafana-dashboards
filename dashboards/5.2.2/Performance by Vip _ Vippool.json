@@ -1,4 +1,35 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.2.3"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -18,7 +49,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 9,
+  "id": null,
   "links": [
     {
       "asDropdown": true,
@@ -63,6 +94,7 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
@@ -80,7 +112,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -94,7 +126,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -125,7 +156,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -159,12 +191,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vippool_read_iops{cluster=\"$cluster\", title=~\"$vippool\"}",
@@ -176,7 +208,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vippool_write_iops{cluster=\"$cluster\", title=~\"$vippool\"}",
@@ -193,7 +225,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -207,7 +239,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -238,7 +269,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -285,12 +317,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vippool_read_bw{cluster=\"$cluster\", title=~\"$vippool\"}",
@@ -302,7 +334,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vippool_write_bw{cluster=\"$cluster\", title=~\"$vippool\"}",
@@ -315,7 +347,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vippool_read_latency{cluster=\"$cluster\", title=~\"$vippool\"}",
@@ -328,7 +360,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vippool_write_latency{cluster=\"$cluster\", title=~\"$vippool\"}",
@@ -345,7 +377,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -359,7 +391,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -390,7 +421,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -424,12 +456,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vippool_read_md_iops{cluster=\"$cluster\", title=~\"$vippool\"}",
@@ -441,7 +473,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vippool_write_md_iops{cluster=\"$cluster\", title=~\"$vippool\"}",
@@ -471,7 +503,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -485,7 +517,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -516,7 +547,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -550,12 +582,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vip_read_iops{cluster=\"$cluster\", title=~\"$vip\"}",
@@ -567,7 +599,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vip_write_iops{cluster=\"$cluster\", title=~\"$vip\"}",
@@ -584,7 +616,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -598,7 +630,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -629,7 +660,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -676,12 +708,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vip_read_bw{cluster=\"$cluster\", title=~\"$vip\"}",
@@ -693,7 +725,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vip_write_bw{cluster=\"$cluster\", title=~\"$vip\"}",
@@ -706,7 +738,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vip_read_latency{cluster=\"$cluster\", title=~\"$vip\"}",
@@ -719,7 +751,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vip_write_latency{cluster=\"$cluster\", title=~\"$vip\"}",
@@ -736,7 +768,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "aenwq4tqlf474f"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -815,12 +847,12 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.4.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vip_read_md_iops{cluster=\"$cluster\", title=~\"$vip\"}",
@@ -832,7 +864,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "aenwq4tqlf474f"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "vast_vip_write_md_iops{cluster=\"$cluster\", title=~\"$vip\"}",
@@ -847,26 +879,24 @@
       "type": "timeseries"
     }
   ],
-  "preload": false,
   "refresh": "",
-  "schemaVersion": 41,
+  "schemaVersion": 39,
   "tags": [
     "Performance"
   ],
   "templating": {
     "list": [
       {
-        "current": {
-          "text": "Bonzo-02",
-          "value": "Bonzo-02"
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cluster_online,cluster)",
+        "hide": 0,
         "includeAll": false,
         "label": "Cluster",
+        "multi": false,
         "name": "cluster",
         "options": [],
         "query": {
@@ -876,23 +906,19 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
         "type": "query"
       },
       {
         "allValue": ".*",
-        "current": {
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cnode_vippool{cluster=\"$cluster\"},vippool)",
+        "hide": 0,
         "includeAll": true,
         "label": "Vippool",
         "multi": true,
@@ -905,23 +931,18 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       },
       {
-        "current": {
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
-        },
+        "current": {},
         "datasource": {
           "type": "prometheus",
-          "uid": "aenwq4tqlf474f"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_vip_read_bw{cluster=\"$cluster\"},title)",
+        "hide": 0,
         "includeAll": true,
         "label": "Vip",
         "multi": true,
@@ -934,6 +955,7 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       }
@@ -947,5 +969,6 @@
   "timezone": "",
   "title": "Performance by Vip / Vippool",
   "uid": "monitoringvip",
-  "version": 1
+  "version": 2,
+  "weekStart": ""
 }

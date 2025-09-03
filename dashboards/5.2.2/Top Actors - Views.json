@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "12.0.1+security-01"
+      "version": "10.2.3"
     },
     {
       "type": "datasource",
@@ -120,6 +120,7 @@
       "url": ""
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "gridPos": {
@@ -135,213 +136,11 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per View Performance and Capacity Metrics - Top N</h1>\n<p style=\"text-align: center;\">Please note that the exact number of views shown here is dependant on the chosen time range. <br>\nFor a larger time range, there might be shown more views than the chosen number, since there's a higher chance that the most active views were changed over time.\n</p>",
+        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per View Performance Metrics - Top N</h1>\n<p style=\"text-align: center;\">Please note that the exact number of views shown here is dependant on the chosen time range. <br>\nFor a larger time range, there might be shown more views than the chosen number, since there's a higher chance that the most active views were changed over time.\n</p>",
         "mode": "markdown"
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "10.2.3",
       "type": "text"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Excluding \"/\" view",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "purple"
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 0,
-        "y": 4
-      },
-      "id": 901,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "pluginVersion": "12.0.1+security-01",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "topk($k, vast_view_logical_capacity{cluster=\"$cluster\", path!=\"/\"})",
-          "format": "time_series",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{path}}",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "View Logical Capacity",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Excluding \"/\" view",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "purple"
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 12,
-        "x": 12,
-        "y": 4
-      },
-      "id": 902,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "pluginVersion": "12.0.1+security-01",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "topk($k, vast_view_physical_capacity{cluster=\"$cluster\", path!=\"/\"})",
-          "format": "time_series",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{path}}",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "View Physical Capacity",
-      "type": "timeseries"
     },
     {
       "datasource": {
@@ -361,7 +160,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -392,7 +190,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -404,15 +203,13 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 15
+        "y": 4
       },
       "id": 855,
       "options": {
         "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -423,7 +220,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -460,7 +257,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -491,7 +287,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -503,15 +300,13 @@
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 15
+        "y": 4
       },
       "id": 896,
       "options": {
         "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -522,7 +317,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -558,7 +353,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -589,7 +383,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "purple",
+                "value": null
               }
             ]
           },
@@ -601,15 +396,13 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 15
       },
       "id": 898,
       "options": {
         "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
@@ -620,7 +413,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -647,6 +440,7 @@
       "fieldConfig": {
         "defaults": {
           "color": {
+            "fixedColor": "semi-dark-purple",
             "mode": "palette-classic"
           },
           "custom": {
@@ -656,7 +450,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -668,11 +461,11 @@
             "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 2,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "never",
+            "showPoints": "auto",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -682,27 +475,17 @@
               "mode": "off"
             }
           },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "index": 0,
-                  "text": "0"
-                }
-              },
-              "type": "special"
-            }
-          ],
+          "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "purple",
+                "value": null
               }
             ]
           },
-          "unit": "ops"
+          "unit": "µs"
         },
         "overrides": []
       },
@@ -710,19 +493,15 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 26
+        "y": 15
       },
-      "id": 895,
+      "id": 899,
       "options": {
         "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
+          "calcs": [],
+          "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true,
-          "sortBy": "Name",
-          "sortDesc": true
+          "showLegend": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -731,7 +510,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -739,16 +518,15 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "exemplar": true,
-          "expr": "topk($k, rate(vast_view_metrics_ViewMetrics_write_iops_count{cluster=\"$cluster\"}[$__rate_interval]))",
+          "expr": "topk($k, rate(vast_view_metrics_ViewMetrics_write_latency_sum{cluster=\"$cluster\"}[$__rate_interval]) / rate(vast_view_metrics_ViewMetrics_write_latency_count{cluster=\"$cluster\"}[$__rate_interval]))",
           "hide": false,
-          "interval": "",
+          "instant": false,
           "legendFormat": "{{path}}",
           "range": true,
-          "refId": "B"
+          "refId": "E"
         }
       ],
-      "title": "Write IOPs",
+      "title": "Average Write Latency",
       "type": "timeseries"
     },
     {
@@ -768,7 +546,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -810,7 +587,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               }
             ]
           },
@@ -822,13 +600,15 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 35
+        "y": 24
       },
       "id": 5,
       "options": {
         "legend": {
           "calcs": [
-            "max"
+            "mean",
+            "max",
+            "min"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -843,7 +623,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -871,7 +651,6 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "fixedColor": "semi-dark-purple",
             "mode": "palette-classic"
           },
           "custom": {
@@ -881,7 +660,6 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -893,11 +671,11 @@
             "insertNulls": false,
             "lineInterpolation": "smooth",
             "lineWidth": 2,
-            "pointSize": 1,
+            "pointSize": 5,
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -907,16 +685,28 @@
               "mode": "off"
             }
           },
-          "mappings": [],
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple"
+                "color": "green",
+                "value": null
               }
             ]
           },
-          "unit": "µs"
+          "unit": "ops"
         },
         "overrides": []
       },
@@ -924,17 +714,21 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 35
+        "y": 24
       },
-      "id": 899,
+      "id": 895,
       "options": {
         "legend": {
           "calcs": [
-            "max"
+            "mean",
+            "max",
+            "min"
           ],
           "displayMode": "table",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": true,
+          "sortBy": "Name",
+          "sortDesc": true
         },
         "tooltip": {
           "hideZeros": false,
@@ -943,7 +737,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -951,15 +745,16 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, rate(vast_view_metrics_ViewMetrics_write_latency_sum{cluster=\"$cluster\"}[$__rate_interval]) / rate(vast_view_metrics_ViewMetrics_write_latency_count{cluster=\"$cluster\"}[$__rate_interval]))",
+          "exemplar": true,
+          "expr": "topk($k, rate(vast_view_metrics_ViewMetrics_write_iops_count{cluster=\"$cluster\"}[$__rate_interval]))",
           "hide": false,
-          "instant": false,
+          "interval": "",
           "legendFormat": "{{path}}",
           "range": true,
-          "refId": "E"
+          "refId": "B"
         }
       ],
-      "title": "Average Write Latency",
+      "title": "Write IOPs",
       "type": "timeseries"
     },
     {
@@ -1034,13 +829,15 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 44
+        "y": 33
       },
       "id": 892,
       "options": {
         "legend": {
           "calcs": [
-            "max"
+            "mean",
+            "max",
+            "min"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -1053,7 +850,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1145,13 +942,15 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 44
+        "y": 33
       },
       "id": 894,
       "options": {
         "legend": {
           "calcs": [
-            "max"
+            "mean",
+            "max",
+            "min"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -1164,7 +963,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "12.0.1+security-01",
+      "pluginVersion": "11.5.1",
       "targets": [
         {
           "datasource": {
@@ -1182,121 +981,10 @@
       ],
       "title": "Write Metadata IOPs",
       "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "super-light-blue",
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "index": 0,
-                  "text": "0"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          },
-          "unit": "µs"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 6,
-        "y": 53
-      },
-      "id": 900,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "maxHeight": 600,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.0.1+security-01",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "topk($k, rate(vast_view_metrics_ViewMetrics_qos_wait_for_budget_time_sum{cluster=\"$cluster\"}[$__rate_interval]) / rate(vast_view_metrics_ViewMetrics_qos_wait_for_budget_time_count{cluster=\"$cluster\"}[$__rate_interval]))",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "{{path}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "QoS Average Wait Time",
-      "type": "timeseries"
     }
   ],
   "refresh": "",
-  "schemaVersion": 41,
+  "schemaVersion": 39,
   "tags": [
     "Performance"
   ],
@@ -1309,8 +997,10 @@
           "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cluster_online,cluster)",
+        "hide": 0,
         "includeAll": false,
         "label": "Cluster",
+        "multi": false,
         "name": "cluster",
         "options": [],
         "query": {
@@ -1320,16 +1010,20 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       },
       {
         "current": {
-          "text": "100",
-          "value": "100"
+          "selected": false,
+          "text": "5",
+          "value": "5"
         },
+        "hide": 0,
         "includeAll": false,
         "label": "Amount of Views to Display",
+        "multi": false,
         "name": "k",
         "options": [
           {
@@ -1338,7 +1032,7 @@
             "value": "2"
           },
           {
-            "selected": false,
+            "selected": true,
             "text": "5",
             "value": "5"
           },
@@ -1353,18 +1047,19 @@
             "value": "50"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "100",
             "value": "100"
           }
         ],
         "query": "2, 5, 10, 50, 100",
+        "skipUrlSync": false,
         "type": "custom"
       }
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -1380,9 +1075,9 @@
       "1d"
     ]
   },
-  "timezone": "utc",
+  "timezone": "Asia/Jerusalem",
   "title": "Top Actors - Views",
   "uid": "vastview",
-  "version": 20,
+  "version": 2,
   "weekStart": ""
 }

@@ -203,7 +203,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 11,
+        "w": 13,
         "x": 0,
         "y": 0
       },
@@ -486,8 +486,8 @@
       },
       "gridPos": {
         "h": 14,
-        "w": 13,
-        "x": 11,
+        "w": 11,
+        "x": 13,
         "y": 0
       },
       "id": 882,
@@ -745,7 +745,7 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 11,
+        "w": 13,
         "x": 0,
         "y": 5
       },
@@ -956,7 +956,7 @@
       },
       "gridPos": {
         "h": 5,
-        "w": 9,
+        "w": 11,
         "x": 2,
         "y": 9
       },
@@ -1439,7 +1439,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1458,6 +1458,6 @@
   "timezone": "utc",
   "title": "Capacity  Utilization",
   "uid": "monitoringcapacity",
-  "version": 6,
+  "version": 7,
   "weekStart": ""
 }

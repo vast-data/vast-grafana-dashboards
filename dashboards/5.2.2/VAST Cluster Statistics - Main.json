@@ -2145,7 +2145,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(vast_cluster_metrics_ProtoMetrics_read_size_count{cluster=\"$cluster\",proto_name=\"ProtoCommon\"}[$__rate_interval]))",
+          "expr": "sum(rate(vast_cnode_metrics_ProtoMetrics_read_size_count{cluster=\"$cluster\",proto_name=\"ProtoCommon\"}[$__rate_interval]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Read",
@@ -2159,7 +2159,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "sum(rate(vast_cluster_metrics_ProtoMetrics_write_size_count{cluster=\"$cluster\",proto_name=\"ProtoCommon\"}[$__rate_interval]))",
+          "expr": "sum(rate(vast_cnode_metrics_ProtoMetrics_write_size_count{cluster=\"$cluster\",proto_name=\"ProtoCommon\"}[$__rate_interval]))",
           "hide": false,
           "interval": "",
           "legendFormat": "Write",
@@ -2488,6 +2488,6 @@
   "timezone": "utc",
   "title": "VAST Cluster Statistics - Main",
   "uid": "monitoringmain",
-  "version": 22,
+  "version": 23,
   "weekStart": ""
 }

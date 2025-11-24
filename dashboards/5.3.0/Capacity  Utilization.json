@@ -276,7 +276,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "vast_cluster_logical_space{cluster=\"$cluster\"} - vast_cluster_physical_space_in_use{cluster=\"$cluster\"}",
+          "expr": "vast_cluster_logical_space{cluster=\"$cluster\"} - vast_cluster_logical_space_in_use{cluster=\"$cluster\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "Logical Space Remaining",

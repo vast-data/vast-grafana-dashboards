@@ -1,0 +1,2361 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "12.0.1+security-01"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "Performance"
+      ],
+      "targetBlank": false,
+      "title": "Performance",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "Switches"
+      ],
+      "targetBlank": false,
+      "title": "NICs & Switches",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "Logs"
+      ],
+      "targetBlank": false,
+      "title": "Logs",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
+        "VAST"
+      ],
+      "targetBlank": false,
+      "title": "Main",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    }
+  ],
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "red",
+                  "index": 1,
+                  "text": "DOWN / NONE"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "UP"
+                },
+                "2": {
+                  "color": "red",
+                  "index": 2,
+                  "text": "DOWN"
+                },
+                "4": {
+                  "color": "red",
+                  "index": 3,
+                  "text": "INVALID"
+                },
+                "8": {
+                  "color": "red",
+                  "index": 4,
+                  "text": "ERROR"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Admin State"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Oper State"
+            },
+            "properties": [
+              {
+                "id": "color"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 925,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Switch IP"
+          }
+        ]
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "nvswitch_interface_oper_state{cluster=\"$cluster\", switch_hostname=~\"$hostname\"}",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "nvswitch_lldp_neighbor_info{cluster=\"$cluster\", switch_hostname=~\"$hostname\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "nvswitch_interface_flags{cluster=\"$cluster\", switch_hostname=~\"$hostname\"} % 2",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "C"
+        }
+      ],
+      "title": "LLDP Stats",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value #A": false,
+              "Value #B": true,
+              "__name__": true,
+              "chassis_id": true,
+              "chassis_id_type": true,
+              "cluster": true,
+              "exported_instance": true,
+              "exported_job": true,
+              "http_scheme": true,
+              "instance": true,
+              "job": true,
+              "net_host_name": true,
+              "net_host_port": true,
+              "otel_scope_name": true,
+              "otel_scope_version": true,
+              "port_description": true,
+              "port_id": true,
+              "port_id_type": true,
+              "server_address": true,
+              "server_port": true,
+              "service_instance_id": true,
+              "service_name": true,
+              "switch_ip": false,
+              "system_description": true,
+              "url_scheme": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Time": 7,
+              "Value #A": 6,
+              "Value #B": 4,
+              "Value #C": 5,
+              "__name__": 8,
+              "chassis_id": 24,
+              "chassis_id_type": 25,
+              "cluster": 9,
+              "exported_instance": 10,
+              "exported_job": 11,
+              "http_scheme": 12,
+              "instance": 13,
+              "interface": 2,
+              "job": 14,
+              "net_host_name": 15,
+              "net_host_port": 16,
+              "otel_scope_name": 17,
+              "otel_scope_version": 18,
+              "port_description": 28,
+              "port_id": 26,
+              "port_id_type": 27,
+              "server_address": 19,
+              "server_port": 20,
+              "service_instance_id": 21,
+              "service_name": 22,
+              "switch_hostname": 0,
+              "switch_ip": 1,
+              "system_description": 29,
+              "system_name": 3,
+              "url_scheme": 23
+            },
+            "renameByName": {
+              "Value #A": "Oper State",
+              "Value #C": "Admin State",
+              "interface": "Interface",
+              "switch_hostname": "Switch Hostname",
+              "switch_ip": "Switch IP",
+              "system_name": "Neighbor Name"
+            }
+          }
+        },
+        {
+          "id": "extractFields",
+          "options": {
+            "delimiter": ",",
+            "format": "regexp",
+            "regExp": "/^\\d+\\.\\d+\\.(?<Rack>\\d+)\\.\\d+$/",
+            "source": "Switch IP"
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Admin State": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "Interface": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Neighbor Name": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Oper State": {
+                "aggregations": [
+                  "lastNotNull"
+                ],
+                "operation": "aggregate"
+              },
+              "Rack": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Switch Hostname": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Switch IP": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "interface": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "switch_hostname": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "switch_ip": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "includeByName": {},
+            "indexByName": {
+              "Admin State": 5,
+              "Interface": 3,
+              "Neighbor Name": 4,
+              "Oper State": 6,
+              "Rack": 2,
+              "Switch Hostname": 0,
+              "Switch IP": 1
+            },
+            "renameByName": {
+              "Admin State (lastNotNull)": "Admin State",
+              "Oper State (lastNotNull)": "Oper State"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Switch ports configured with a route, that are currently inactive.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 1,
+                  "text": "Unreachable"
+                },
+                "1": {
+                  "color": "green",
+                  "index": 0,
+                  "text": "Reachable"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "__name__"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Time"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cluster"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": false
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "instance"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "job"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": true
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "custom.hidden",
+                "value": false
+              },
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "State"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 913,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "switch_reachable{cluster='$cluster', switch_hostname=~\"$hostname\"}",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Switches State",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "cluster": true,
+              "instance": true,
+              "job": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Time": 0,
+              "Value": 9,
+              "__name__": 5,
+              "cluster": 6,
+              "instance": 7,
+              "job": 8,
+              "port": 4,
+              "switch_hostname": 3,
+              "switch_ip": 1,
+              "switch_rack": 2
+            },
+            "renameByName": {
+              "Value": "State",
+              "switch_hostname": "Switch Hostname",
+              "switch_ip": "Switch IP",
+              "switch_rack": "Switch Rack"
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "desc": true,
+                "field": "State"
+              }
+            ]
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Switch ports configured with a route, that are currently inactive.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "text",
+            "mode": "fixed"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "color-text",
+              "wrapText": false
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [
+            {
+              "options": {
+                "0": {
+                  "color": "dark-red",
+                  "index": 1,
+                  "text": "Unknown"
+                },
+                "2": {
+                  "color": "dark-red",
+                  "index": 0,
+                  "text": "Down"
+                },
+                "4": {
+                  "color": "dark-red",
+                  "index": 2,
+                  "text": "Invalid"
+                },
+                "8": {
+                  "color": "dark-red",
+                  "index": 3,
+                  "text": "Error"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "noValue": "All ports are reachable",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "thresholds"
+                }
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text",
+                  "wrapText": false
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Switch Hostname"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 199
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Switch Interface (uniqueValues)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Switch Interfaces"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 8
+      },
+      "id": 911,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "nvswitch_interface_oper_state{cluster=\"$cluster\", switch_hostname=~\"$hostname\"} != 1\nAND on(cluster, interface, switch_hostname)\nnvswitch_interface_flags{cluster=\"$cluster\", switch_hostname=~\"$hostname\"} % 2 == 1",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "{{switch_ip}}",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Switch Ports Unreachable",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Data_Center_Location": true,
+              "Time": true,
+              "Value": false,
+              "__name__": true,
+              "cluster": true,
+              "exported_instance": true,
+              "exported_job": true,
+              "http_scheme": true,
+              "instance": true,
+              "job": true,
+              "net_host_name": true,
+              "net_host_port": true,
+              "server_address": true,
+              "server_port": true,
+              "service_instance_id": true,
+              "service_name": true,
+              "switch_hostname": true,
+              "url_scheme": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Data_Center_Location": 9,
+              "Time": 0,
+              "Value": 3,
+              "__name__": 5,
+              "cluster": 6,
+              "exported_instance": 10,
+              "exported_job": 11,
+              "http_scheme": 12,
+              "instance": 7,
+              "interface": 4,
+              "job": 8,
+              "net_host_name": 13,
+              "net_host_port": 14,
+              "server_address": 15,
+              "server_port": 16,
+              "service_instance_id": 17,
+              "service_name": 18,
+              "switch_hostname": 2,
+              "switch_ip": 1,
+              "url_scheme": 19
+            },
+            "renameByName": {
+              "Time": "",
+              "Value": "Status",
+              "interface": "Switch Interface",
+              "switch_hostname": "Switch Hostname",
+              "switch_ip": "Switch IP"
+            }
+          }
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Status": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Switch Hostname": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Switch IP": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Switch Interface": {
+                "aggregations": [
+                  "uniqueValues"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "noValue": "No Missing VTEPs",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "id": 915,
+      "maxDataPoints": 2400000,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "missing_vtep{cluster='$cluster', switch_hostname=~\"$hostname\"} > 0",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Missing VTEPs",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "cluster": true,
+              "instance": true,
+              "job": true,
+              "switch_rack": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "switch_hostname": "Switch Hostname",
+              "switch_ip": "Switch IP",
+              "switch_rack": "",
+              "vtep": "Missing VTEP"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "mappings": [],
+          "noValue": "No Missing BGP Connections",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "State"
+            },
+            "properties": [
+              {
+                "id": "color"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 916,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "nvrouting_bgp_peer_state{cluster=\"$cluster\", switch_hostname=~\"$hostname\"} != 1",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Missing BGP Connections",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Data_Center_Location": true,
+              "Time": true,
+              "Value": true,
+              "__name__": true,
+              "cluster": true,
+              "exported_instance": true,
+              "exported_job": true,
+              "instance": true,
+              "job": true,
+              "otel_scope_name": true,
+              "otel_scope_sample_time": true,
+              "service_instance_id": true,
+              "service_name": true,
+              "service_namespace": true,
+              "service_version": true,
+              "switch_hostname": false,
+              "switch_rack": true,
+              "telemetry_sdk_language": true,
+              "telemetry_sdk_name": true,
+              "telemetry_sdk_version": true,
+              "vrf": true
+            },
+            "includeByName": {},
+            "indexByName": {
+              "Time": 0,
+              "Value": 9,
+              "__name__": 1,
+              "cluster": 2,
+              "instance": 3,
+              "job": 4,
+              "missing_vteps": 7,
+              "switch_hostname": 5,
+              "switch_ip": 6,
+              "switch_rack": 8
+            },
+            "renameByName": {
+              "Value": "",
+              "missing_bgp_connections": "Missing BGP Connections",
+              "missing_vteps": "Missing VTEPs",
+              "peer_id": "Peer ID",
+              "state": "State",
+              "switch_hostname": "Switch Hostname",
+              "switch_ip": "Switch IP",
+              "switch_rack": "Switch Rack"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 26
+      },
+      "id": 928,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes\n{cluster=\"$cluster\", switch_hostname=~\"$hostname\"}",
+          "interval": "30s",
+          "legendFormat": "{{switch_hostname}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Memory Used - Bytes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 26
+      },
+      "id": 929,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "100 * (1 - node_memory_MemAvailable_bytes{cluster=\"$cluster\", switch_hostname=~\"$hostname\"}  / node_memory_MemTotal_bytes{cluster=\"$cluster\", switch_hostname=~\"$hostname\"} )\n",
+          "interval": "30s",
+          "legendFormat": "{{switch_hostname}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Memory Used - Percent",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 26
+      },
+      "id": 919,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "60 * rate(nvswitch_control_plane_trap_group_pkt_violations_total{cluster=\"$cluster\", switch_hostname=~\"$hostname\", group=\"13\"}[$__rate_interval])",
+          "interval": "30s",
+          "legendFormat": "{{switch_hostname}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "ARP Packets Violations",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#25c19c",
+            "mode": "shades"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/swp.*/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#a61153",
+                  "mode": "palette-classic"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 34
+      },
+      "id": 914,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "label_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      rate(nvswitch_interface_pg_rx_buffer_discard{\n        switch_hostname=~\"$hostname\",\n        pg=\"1\",\n        cluster=\"$cluster\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  unless\n  label_join(\n    max by (switch_hostname, interface) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"LLDP missing\", \"join_key\", \".*\"\n)\nor\nlabel_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      rate(nvswitch_interface_pg_rx_buffer_discard{\n        switch_hostname=~\"$hostname\",\n        pg=\"1\",\n        cluster=\"$cluster\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  * on(join_key)\n  group_left(system_name)\n  label_join(\n    max by (switch_hostname, interface, system_name) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"$1\", \"system_name\", \"(.*)\"\n)\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{join_key}} ➡️ {{system_name}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Switches Roce No Buffer Discards",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#25c19c",
+            "mode": "shades"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 15,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "match": "null",
+                "result": {
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "special"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/swp.*/"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#a61153",
+                  "mode": "palette-classic"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 34
+      },
+      "id": 898,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "maxHeight": 600,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "label_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      rate(nvswitch_interface_sp_rx_discard{\n        switch_hostname=~\"$hostname\",\n        sp=\"3\",\n        cluster=\"$cluster\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  unless\n  label_join(\n    max by (switch_hostname, interface) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"LLDP missing\", \"join_key\", \".*\"\n)\nor\nlabel_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      rate(nvswitch_interface_sp_rx_discard{\n        switch_hostname=~\"$hostname\",\n        sp=\"3\",\n        cluster=\"$cluster\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  * on(join_key)\n  group_left(system_name)\n  label_join(\n    max by (switch_hostname, interface, system_name) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"$1\", \"system_name\", \"(.*)\"\n)\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{join_key}} ➡️ {{system_name}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Switches Roce General Discards",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 34
+      },
+      "id": 922,
+      "maxDataPoints": 11111111111,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "label_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      45 * rate(nvswitch_interface_phy_stats_phy_effective_errors{\n        switch_hostname=~\"$hostname\",\n        cluster=\"$cluster\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  unless\n  label_join(\n    max by (switch_hostname, interface) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"LLDP missing\", \"join_key\", \".*\"\n)\nor\nlabel_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      45 * rate(nvswitch_interface_phy_stats_phy_effective_errors{\n        switch_hostname=~\"$hostname\",\n        cluster=\"$cluster\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  * on(join_key)\n  group_left(system_name)\n  label_join(\n    max by (switch_hostname, interface, system_name) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"$1\", \"system_name\", \"(.*)\"\n)\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{join_key}} ➡️ {{system_name}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Switches Physical Layer Errors",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 0,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "noValue": "No Missing VTEPs",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 42
+      },
+      "id": 917,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "label_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      100 * (\n        nvswitch_interface_shared_buffer_port_pg_curr_occupancy{\n          cluster=\"$cluster\",\n          switch_hostname=~\"$hostname\",\n          pg=\"0\"\n        }\n        /\n        nvswitch_interface_shared_buffer_port_pg_watermark{\n          cluster=\"$cluster\",\n          switch_hostname=~\"$hostname\",\n          pg=\"0\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  unless\n  label_join(\n    max by (switch_hostname, interface) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"LLDP missing\", \"join_key\", \".*\"\n)\nor\nlabel_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      100 * (\n        nvswitch_interface_shared_buffer_port_pg_curr_occupancy{\n          cluster=\"$cluster\",\n          switch_hostname=~\"$hostname\",\n          pg=\"0\"\n        }\n        /\n        nvswitch_interface_shared_buffer_port_pg_watermark{\n          cluster=\"$cluster\",\n          switch_hostname=~\"$hostname\",\n          pg=\"0\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  * on(join_key)\n  group_left(system_name)\n  label_join(\n    max by (switch_hostname, interface, system_name) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"$1\", \"system_name\", \"(.*)\"\n)\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{join_key}} ➡️  {{system_name}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Buffer Usage Percentage - TC 0 ",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "noValue": "No Missing VTEPs",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 42
+      },
+      "id": 918,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "label_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      100 * (\n        nvswitch_interface_shared_buffer_port_pg_curr_occupancy{\n          cluster=\"$cluster\",\n          switch_hostname=~\"$hostname\",\n          pg=\"1\",\n        }\n        /\n        nvswitch_interface_shared_buffer_port_pg_watermark{\n          cluster=\"$cluster\",\n          switch_hostname=~\"$hostname\",\n          pg=\"1\",\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  unless\n  label_join(\n    max by (switch_hostname, interface) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"LLDP missing\", \"join_key\", \".*\"\n)\nor\nlabel_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      100 * (\n        nvswitch_interface_shared_buffer_port_pg_curr_occupancy{\n          cluster=\"$cluster\",\n          switch_hostname=~\"$hostname\",\n          pg=\"1\",\n        }\n        /\n        nvswitch_interface_shared_buffer_port_pg_watermark{\n          cluster=\"$cluster\",\n          switch_hostname=~\"$hostname\",\n          pg=\"1\",\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  * on(join_key)\n  group_left(system_name)\n  label_join(\n    max by (switch_hostname, interface, system_name) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"$1\", \"system_name\", \"(.*)\"\n)\n",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{interface}}, {{switch_hostname}} ➡️  {{system_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Buffer Usage Percentage - TC 3",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 42
+      },
+      "id": 924,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "# ECN-marked ports WITHOUT LLDP → label them as \"LLDP missing\"\nlabel_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      rate(nvswitch_interface_performance_marked_packets{\n        switch_hostname=~\"$hostname\",\n        cluster=\"$cluster\",\n        marking=\"ecn\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  unless\n  label_join(\n    max by (switch_hostname, interface) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"LLDP missing\", \"join_key\", \".*\"\n)\nor\n# ECN-marked ports WITH LLDP → enrich with system_name using group_left\nlabel_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      rate(nvswitch_interface_performance_marked_packets{\n        switch_hostname=~\"$hostname\",\n        cluster=\"$cluster\",\n        marking=\"ecn\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  * on(join_key)\n  group_left(system_name)\n  label_join(\n    max by (switch_hostname, interface, system_name) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"$1\", \"system_name\", \"(.*)\"\n)",
+          "instant": false,
+          "legendFormat": "{{join_key}} ➡️ {{system_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Switches ECN Marked Packets",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 50
+      },
+      "id": 900,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "label_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      rate(nvswitch_interface_sp_rx_pause{\n        switch_hostname=~\"$hostname\",\n        sp=\"3\",\n        cluster=\"$cluster\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  unless\n  label_join(\n    max by (switch_hostname, interface) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"LLDP missing\", \"join_key\", \".*\"\n)\nor\nlabel_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      rate(nvswitch_interface_sp_rx_pause{\n        switch_hostname=~\"$hostname\",\n        sp=\"3\",\n        cluster=\"$cluster\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  * on(join_key)\n  group_left(system_name)\n  label_join(\n    max by (switch_hostname, interface, system_name) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"$1\", \"system_name\", \"(.*)\"\n)\n",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{join_key}} ➡️ {{system_name}}",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Switches RX Paused Packets",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "dashed"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 50
+      },
+      "id": 901,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "label_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      rate(nvswitch_interface_sp_tx_pause{\n        switch_hostname=~\"$hostname\",\n        sp=\"3\",\n        cluster=\"$cluster\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  unless\n  label_join(\n    max by (switch_hostname, interface) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"LLDP missing\", \"join_key\", \".*\"\n)\nor\nlabel_replace(\n  label_join(\n    max by (switch_hostname, interface) (\n      rate(nvswitch_interface_sp_tx_pause{\n        switch_hostname=~\"$hostname\",\n        sp=\"3\",\n        cluster=\"$cluster\"\n      }[$__rate_interval])\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  )\n  * on(join_key)\n  group_left(system_name)\n  label_join(\n    max by (switch_hostname, interface, system_name) (\n      max without(port_id, port_description) (\n        nvswitch_lldp_neighbor_info{\n          switch_hostname=~\"$hostname\",\n          cluster=\"$cluster\",\n          system_name=~\".+\"\n        }\n      )\n    ),\n    \"join_key\", \" | \", \"switch_hostname\", \"interface\"\n  ),\n  \"system_name\", \"$1\", \"system_name\", \"(.*)\"\n)\n",
+          "instant": false,
+          "legendFormat": "{{join_key}} ➡️  {{system_name}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Switches TX Paused Packets",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 41,
+  "tags": [
+    "Switches"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(nvswitch_interface_oper_state\t,cluster)",
+        "includeAll": false,
+        "label": "Cluster",
+        "name": "cluster",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(nvswitch_interface_oper_state\t,cluster)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(nvswitch_interface_oper_state{cluster=\"$cluster\"},switch_hostname)",
+        "includeAll": true,
+        "label": "Switch Hostname",
+        "multi": true,
+        "name": "hostname",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(nvswitch_interface_oper_state{cluster=\"$cluster\"},switch_hostname)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "30s",
+      "1m",
+      "2m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "Switches State",
+  "uid": "vastnicsandswitches",
+  "version": 159,
+  "weekStart": ""
+}

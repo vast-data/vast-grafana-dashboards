@@ -158,6 +158,8 @@ clush -g switches -l cumulus -o "-q" "nv set system telemetry control-plane-stat
 clush -g switches -l cumulus -o "-q" "nv set system telemetry router export state enabled"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry router bgp export state enabled"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry router sample-interval 30"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry lldp export state enabled"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry lldp sample-interval 30"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry platform-stats export state enabled"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry platform-stats class memory sample-interval 30"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry export otlp grpc cert-id tls-cert"

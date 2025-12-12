@@ -2,6 +2,8 @@
 
 This document explains how to set up monitoring for Cumulus Linux switches version 5.12 and later using **OpenTelemetry (OTEL)** and a **custom Prometheus exporter**. Metrics are visualized in Grafana dashboards for daily monitoring.
 
+## <span style="color:red;">Update Dec 2025 — Please do not use monitoring on Cumulus switches of versions 5.13 and 5.14, due to Nvidia bug #4641291, solved in Cumulus 5.15</span>
+
 ---
 
 ## Contents

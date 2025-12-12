@@ -111,6 +111,8 @@ docker run -d --name otel-collector \
 
 Use `clush` to configure all switches:
 
+## For Cumulus 5.12:
+
 ```bash
 clush -g switches -l cumulus -o "-q" 'nv unset system telemetry'
 clush -g switches -l cumulus -o "-q" 'nv action import system security ca-certificate tls-cert data """<public-key-data>"""'
@@ -127,11 +129,39 @@ clush -g switches -l cumulus -o "-q" "nv set system telemetry buffer-stats expor
 clush -g switches -l cumulus -o "-q" "nv set system telemetry histogram export state enabled"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry control-plane-stats export state enabled"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry control-plane-stats sample-interval 30"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry export otlp grpc cert-id tls-cert"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry export otlp grpc destination <host_ip> port 4317"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry export vrf mgmt"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry label \"switch_ip\" description \"\$(hostname -I | awk '{print \$1}')\""
+clush -g switches -l cumulus -o "-q" "nv set system telemetry label \"switch_hostname\" description \"\$(hostname)\""
+clush -g switches -l cumulus -o "-q" "nv set system telemetry label cluster description <cluster_name>"
+clush -g switches -l cumulus -o "-q" "nv config apply" --assume-yes
+```
+## For Cumulus 5.15+:
+
+```bash
+clush -g switches -l cumulus -o "-q" 'nv unset system telemetry'
+clush -g switches -l cumulus -o "-q" 'nv action import system security ca-certificate tls-cert data """<public-key-data>"""'
+clush -g switches -l cumulus -o "-q" "nv set system telemetry state enabled"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry export otlp state enabled"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry interface-stats export state enabled"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry interface-stats sample-interval 30"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry interface-stats ingress-buffer priority-group 0"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry interface-stats ingress-buffer priority-group 1"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry interface-stats egress-buffer traffic-class 3"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry interface-stats switch-priority 3"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry interface-stats class phy state enabled"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry buffer-stats export state enabled"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry histogram export state enabled"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry control-plane-stats export state enabled"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry control-plane-stats sample-interval 30"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry router export state enabled"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry router bgp export state enabled"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry router sample-interval 30"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry platform-stats export state enabled"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry platform-stats class memory sample-interval 30"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry export otlp grpc cert-id tls-cert"
-clush -g switches -l cumulus -o "-q" "nv set system telemetry export otlp grpc destination <host_ip> port 4317"
+clush -g switches -l cumulus -o "-q" "nv set system telemetry export otlp grpc destination <host_ip> port 4317" # Change to your listening port
 clush -g switches -l cumulus -o "-q" "nv set system telemetry export vrf mgmt"
 clush -g switches -l cumulus -o "-q" "nv set system telemetry label \"switch_ip\" description \"\$(hostname -I | awk '{print \$1}')\""
 clush -g switches -l cumulus -o "-q" "nv set system telemetry label \"switch_hostname\" description \"\$(hostname)\""

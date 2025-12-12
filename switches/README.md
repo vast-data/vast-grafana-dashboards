@@ -169,6 +169,7 @@ clush -g switches -l cumulus -o "-q" "nv set system telemetry label cluster desc
 clush -g switches -l cumulus -o "-q" "nv config apply" --assume-yes
 ```
 
+
 > **Notes:**
 >
 > * Replace `<public-key-data>` with the actual key data.

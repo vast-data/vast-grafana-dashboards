@@ -138,6 +138,7 @@ Prometheus supports both basic authentication and bearer tokens. Example using b
 * `/api/prometheusmetrics/` – General cluster + CNode metrics
 * `/api/prometheusmetrics/all` – All metrics (use cautiously on large clusters)
 * `/api/prometheusmetrics/user_connections` - Reports S3 connections per user. Applies only to users with a QoS policy that defines a maximum user connections limit (5.2.2+).
+* `/api/prometheusmetrics/kafka_targets` - Metrics per Kafka broker (5.4.1+).
 
 ---
 

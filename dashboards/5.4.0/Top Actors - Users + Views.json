@@ -1118,17 +1118,35 @@
         "refresh": 1,
         "regex": "",
         "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "definition": "label_values(vast_user_view_bw{cluster=\"$cluster\"},username)",
+        "includeAll": true,
+        "label": "Users",
+        "multi": true,
+        "name": "username",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(vast_user_view_bw{cluster=\"$cluster\"},username)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "utc",
   "title": "Top Actors - Users + Views",
   "uid": "feft68oht9atcf",
-  "version": 4,
+  "version": 8,
   "weekStart": ""
 }

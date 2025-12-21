@@ -907,6 +907,7 @@
       },
       {
         "allValue": ".*",
+        "allowCustomValue": false,
         "current": {},
         "datasource": {
           "type": "prometheus",
@@ -929,12 +930,13 @@
         "type": "query"
       },
       {
+        "allowCustomValue": false,
         "current": {},
         "datasource": {
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "label_values(vast_vip_read_bw{cluster=\"$cluster\"},title)",
+        "definition": "label_values(vast_cnode_vippool{cluster=\"$cluster\", vippool=~\"$vippool\"},ip)",
         "includeAll": true,
         "label": "Vip",
         "multi": true,
@@ -942,24 +944,24 @@
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(vast_vip_read_bw{cluster=\"$cluster\"},title)",
+          "query": "label_values(vast_cnode_vippool{cluster=\"$cluster\", vippool=~\"$vippool\"},ip)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
-        "sort": 1,
+        "sort": 3,
         "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Performance by Vip / Vippool",
   "uid": "monitoringvip",
-  "version": 1,
+  "version": 5,
   "weekStart": ""
 }

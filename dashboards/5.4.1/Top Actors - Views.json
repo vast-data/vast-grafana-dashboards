@@ -146,6 +146,252 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "id": 903,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "vast_quota_used_capacity{cluster=\"$cluster\", path=~\"$view\"}",
+          "legendFormat": "{{path}} - Used Capacity",
+          "range": true,
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_quota_soft_limit{cluster=\"$cluster\", path=~\"$view\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{path}} - Soft Limit",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_quota_hard_limit{cluster=\"$cluster\", path=~\"$view\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{path}} - Hard Limit",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "View Quota - Capacity",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 4
+      },
+      "id": 904,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.1+security-01",
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "vast_quota_used_inodes{cluster=\"$cluster\", path=~\"$view\"}",
+          "legendFormat": "{{path}} - Used Capacity",
+          "range": true,
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          }
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_quota_soft_inodes{cluster=\"$cluster\", path=~\"$view\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{path}} - Soft Limit",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "expr": "vast_quota_hard_inodes{cluster=\"$cluster\", path=~\"$view\"}",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "{{path}} - Hard Limit",
+          "range": true,
+          "refId": "C"
+        }
+      ],
+      "title": "View Quota - Inodes",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Excluding \"/\" view",
       "fieldConfig": {
         "defaults": {
@@ -196,13 +442,38 @@
           },
           "unit": "decbytes"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "/CS-HomeDirs"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 11,
         "w": 7,
         "x": 0,
-        "y": 4
+        "y": 12
       },
       "id": 901,
       "options": {
@@ -230,7 +501,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "topk($k, vast_view_logical_capacity{cluster=\"$cluster\", path!=\"/\"})",
+          "expr": "topk($k, vast_view_logical_capacity{cluster=\"$cluster\", path!=\"/\", path=~\"$view\"})",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -303,7 +574,7 @@
         "h": 11,
         "w": 8,
         "x": 7,
-        "y": 4
+        "y": 12
       },
       "id": 902,
       "options": {
@@ -331,7 +602,7 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "topk($k, vast_view_physical_capacity{cluster=\"$cluster\", path!=\"/\"})",
+          "expr": "topk($k, vast_view_physical_capacity{cluster=\"$cluster\", path!=\"/\", path=~\"$view\"})",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -415,7 +686,7 @@
         "h": 11,
         "w": 9,
         "x": 15,
-        "y": 4
+        "y": 12
       },
       "id": 900,
       "options": {
@@ -443,7 +714,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk($k, rate(vast_view_metrics_ViewMetrics_qos_wait_for_budget_time_sum{cluster=\"$cluster\"}[$__rate_interval]) / rate(vast_view_metrics_ViewMetrics_qos_wait_for_budget_time_count{cluster=\"$cluster\"}[$__rate_interval]))",
+          "expr": "topk($k, rate(vast_view_metrics_ViewMetrics_qos_wait_for_budget_time_sum{cluster=\"$cluster\", path=~\"$view\"}[$__rate_interval]) / rate(vast_view_metrics_ViewMetrics_qos_wait_for_budget_time_count{cluster=\"$cluster\", path=~\"$view\"}[$__rate_interval]))",
           "hide": false,
           "interval": "",
           "legendFormat": "{{path}}",
@@ -515,7 +786,7 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 15
+        "y": 23
       },
       "id": 855,
       "options": {
@@ -542,7 +813,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_bw{cluster=\"$cluster\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_bw{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
           "hide": false,
           "instant": false,
           "legendFormat": "{{path}}",
@@ -614,7 +885,7 @@
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 15
+        "y": 23
       },
       "id": 896,
       "options": {
@@ -641,7 +912,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_bw{cluster=\"$cluster\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_bw{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
           "instant": false,
           "legendFormat": "{{path}}",
           "range": true,
@@ -712,7 +983,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 34
       },
       "id": 898,
       "options": {
@@ -739,7 +1010,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_latency{cluster=\"$cluster\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_latency{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
           "hide": false,
           "instant": false,
           "legendFormat": "{{path}}",
@@ -811,7 +1082,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 26
+        "y": 34
       },
       "id": 899,
       "options": {
@@ -838,7 +1109,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_latency{cluster=\"$cluster\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_latency{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
           "hide": false,
           "instant": false,
           "legendFormat": "{{path}}",
@@ -920,7 +1191,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 35
+        "y": 43
       },
       "id": 5,
       "options": {
@@ -950,7 +1221,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_iops{cluster=\"$cluster\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_iops{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{path}}",
@@ -958,7 +1229,7 @@
           "refId": "A"
         }
       ],
-      "title": "Read IOPs",
+      "title": "Read IOPS",
       "type": "timeseries"
     },
     {
@@ -1032,7 +1303,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 35
+        "y": 43
       },
       "id": 895,
       "options": {
@@ -1062,7 +1333,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_iops{cluster=\"$cluster\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_iops{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{path}}",
@@ -1070,7 +1341,7 @@
           "refId": "B"
         }
       ],
-      "title": "Write IOPs",
+      "title": "Write IOPS",
       "type": "timeseries"
     },
     {
@@ -1145,7 +1416,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 44
+        "y": 52
       },
       "id": 892,
       "options": {
@@ -1173,7 +1444,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_md_iops{cluster=\"$cluster\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_md_iops{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
           "hide": false,
           "interval": "",
           "legendFormat": "{{path}}",
@@ -1181,7 +1452,7 @@
           "refId": "A"
         }
       ],
-      "title": "Read Metadata IOPs",
+      "title": "Read Metadata IOPS",
       "type": "timeseries"
     },
     {
@@ -1256,7 +1527,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 44
+        "y": 52
       },
       "id": 894,
       "options": {
@@ -1283,7 +1554,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_md_iops{cluster=\"$cluster\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_md_iops{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
           "hide": false,
           "instant": false,
           "legendFormat": "{{path}}",
@@ -1291,7 +1562,7 @@
           "refId": "B"
         }
       ],
-      "title": "Write Metadata IOPs",
+      "title": "Write Metadata IOPS",
       "type": "timeseries"
     }
   ],
@@ -1321,6 +1592,24 @@
         "refresh": 1,
         "regex": "",
         "sort": 1,
+        "type": "query"
+      },
+      {
+        "allowCustomValue": false,
+        "current": {},
+        "definition": "label_values(vast_view_logical_capacity{cluster=\"$cluster\"},path)",
+        "includeAll": true,
+        "label": "Views",
+        "multi": true,
+        "name": "view",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(vast_view_logical_capacity{cluster=\"$cluster\"},path)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
         "type": "query"
       },
       {
@@ -1383,6 +1672,6 @@
   "timezone": "utc",
   "title": "Top Actors - Views",
   "uid": "vastview",
-  "version": 28,
+  "version": 46,
   "weekStart": ""
 }

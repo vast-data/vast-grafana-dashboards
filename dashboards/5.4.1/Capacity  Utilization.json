@@ -497,7 +497,7 @@
         ]
       },
       "gridPos": {
-        "h": 14,
+        "h": 13,
         "w": 13,
         "x": 11,
         "y": 0
@@ -1296,7 +1296,7 @@
         "h": 9,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 13
       },
       "id": 892,
       "options": {
@@ -1496,6 +1496,6 @@
   "timezone": "utc",
   "title": "Capacity  Utilization",
   "uid": "monitoringcapacity",
-  "version": 11,
+  "version": 15,
   "weekStart": ""
 }

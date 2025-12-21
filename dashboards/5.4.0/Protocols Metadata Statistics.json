@@ -476,7 +476,7 @@
           "refId": "S"
         }
       ],
-      "title": "NFSv3 Metadata Action Count",
+      "title": "NFSv3 Metadata Action Count (Rate)",
       "type": "timeseries"
     },
     {
@@ -926,7 +926,7 @@
           "refId": "AA"
         }
       ],
-      "title": "NFSv4 Metadata Action Count",
+      "title": "NFSv4 Metadata Action Count (Rate)",
       "type": "timeseries"
     },
     {
@@ -1249,7 +1249,7 @@
           "refId": "P"
         }
       ],
-      "title": "S3 Metadata Action Count",
+      "title": "S3 Metadata Action Count (Rate)",
       "type": "timeseries"
     },
     {
@@ -2443,6 +2443,6 @@
   "timezone": "",
   "title": "Protocols Metadata Statistics",
   "uid": "monitoringprotocols",
-  "version": 1,
+  "version": 5,
   "weekStart": ""
 }

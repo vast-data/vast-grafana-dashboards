@@ -2238,6 +2238,7 @@
       },
       {
         "allValue": ".*",
+        "allowCustomValue": false,
         "current": {},
         "datasource": {
           "type": "prometheus",
@@ -2342,6 +2343,6 @@
   "timezone": "",
   "title": "CNodes",
   "uid": "monitoringcnodes",
-  "version": 10,
+  "version": 11,
   "weekStart": ""
 }

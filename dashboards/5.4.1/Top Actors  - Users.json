@@ -229,7 +229,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_user_read_bw{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_read_bw{cluster=\"$cluster\", name=~\"$username\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "{{name}} {{uid}}",
@@ -328,7 +328,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_user_write_bw{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_write_bw{cluster=\"$cluster\", name=~\"$username\"})",
           "instant": false,
           "legendFormat": "{{name}} {{uid}}",
           "range": true,
@@ -451,7 +451,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_user_read_latency{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_read_latency{cluster=\"$cluster\", name=~\"$username\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "{{name}} {{uid}}",
@@ -517,7 +517,32 @@
           },
           "unit": "µs"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "nfsnobody 65534"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 11,
@@ -550,7 +575,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_user_write_latency{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_write_latency{cluster=\"$cluster\", name=~\"$username\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "{{name}} {{uid}}",
@@ -661,7 +686,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk($k, vast_user_read_md_iops{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_read_md_iops{cluster=\"$cluster\", name=~\"$username\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}} {{uid}}",
@@ -771,7 +796,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_user_write_md_iops{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_write_md_iops{cluster=\"$cluster\", name=~\"$username\"})",
           "hide": false,
           "instant": false,
           "legendFormat": "{{name}} {{uid}}",
@@ -883,7 +908,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk($k, vast_user_read_iops{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_read_iops{cluster=\"$cluster\", name=~\"$username\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}} {{uid}}",
@@ -995,7 +1020,7 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk($k, vast_user_write_iops{cluster=\"$cluster\", more_info=~\"$tenant\"})",
+          "expr": "topk($k, vast_user_write_iops{cluster=\"$cluster\", name=~\"$username\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "{{name}} {{uid}}",
@@ -1100,20 +1125,21 @@
       },
       {
         "allValue": ".*",
+        "allowCustomValue": false,
         "current": {},
         "datasource": {
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "label_values(vast_user_bw{cluster=~\"$cluster\"},more_info)",
+        "definition": "label_values(vast_user_bw{cluster=~\"$cluster\"},name)",
         "includeAll": true,
-        "label": "Tenant",
+        "label": "Username ",
         "multi": true,
-        "name": "tenant",
+        "name": "username",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(vast_user_bw{cluster=~\"$cluster\"},more_info)",
+          "query": "label_values(vast_user_bw{cluster=~\"$cluster\"},name)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1142,6 +1168,6 @@
   "timezone": "utc",
   "title": "Top Actors  - Users",
   "uid": "monitoringusers",
-  "version": 3,
+  "version": 10,
   "weekStart": ""
 }

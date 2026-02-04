@@ -296,7 +296,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "rate(vast_kafka_broker_metrics_kafka_external_events_failures_count{cluster=\"$cluster\"}[$__rate_interval])",
+          "expr": "rate(vast_kafka_broker_metrics_kafka_external_events_returned_an_error{cluster=\"$cluster\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
           "legendFormat": "{{name}}",
@@ -304,7 +304,7 @@
           "refId": "B"
         }
       ],
-      "title": "Kafka Broker - Event Failures (rate)",
+      "title": "Kafka Broker - Events Returned an Error (rate)",
       "type": "timeseries"
     },
     {
@@ -395,7 +395,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "rate(vast_kafka_broker_metrics_kafka_external_events_published{cluster=\"$cluster\"}[$__rate_interval])",
+          "expr": "rate(vast_kafka_broker_metrics_kafka_external_events_failures_count{cluster=\"$cluster\"}[$__rate_interval])",
           "hide": false,
           "instant": false,
           "legendFormat": "{{name}}",
@@ -403,7 +403,7 @@
           "refId": "B"
         }
       ],
-      "title": "Kafka Broker - Events Published (rate)",
+      "title": "Kafka Broker - Events Total Failures (Rate)",
       "type": "timeseries"
     },
     {
@@ -531,13 +531,13 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "utc",
   "title": "Kafka Targets",
   "uid": "eaaac690-bc27-4a34-98e4-5cc89421647a",
-  "version": 11,
+  "version": 14,
   "weekStart": ""
 }

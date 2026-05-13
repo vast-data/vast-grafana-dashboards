@@ -128,14 +128,14 @@
         "x": 0,
         "y": 0
       },
-      "id": 902,
+      "id": 905,
       "options": {
         "code": {
           "language": "plaintext",
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per User Performance Metrics - Top N</h1>\n<p style=\"text-align: center;\">Please note that the exact number of users shown here is dependant on the chosen time range. <br>\nFor a larger time range, there might be shown more users than the chosen number, since there's a higher chance that the most active users were changed over time.\n</p>",
+        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per User Performance Metrics - Top N</h1>\n<p style=\"text-align: center;\">Wider time ranges may show more users than the chosen top-N, since the most active users can shift over time.\n</p>",
         "mode": "markdown"
       },
       "pluginVersion": "12.0.1+security-01",
@@ -1149,7 +1149,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-4h",
     "to": "now"
   },
   "timepicker": {
@@ -1168,6 +1168,6 @@
   "timezone": "utc",
   "title": "Top Actors  - Users",
   "uid": "monitoringusers",
-  "version": 10,
+  "version": 12,
   "weekStart": ""
 }

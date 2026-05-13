@@ -135,7 +135,7 @@
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per View Performance and Capacity Metrics - Top N</h1>\n<p style=\"text-align: center;\">Please note that the exact number of views shown here is dependant on the chosen time range. <br>\nFor a larger time range, there might be shown more views than the chosen number, since there's a higher chance that the most active views were changed over time.\n</p>",
+        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per View Performance and Capacity Metrics - Top N</h1>\n<p style=\"text-align: center;\">Wider time ranges may show more views than the chosen top-N, since the most active views can shift over time.\n</p>",
         "mode": "markdown"
       },
       "pluginVersion": "12.0.1+security-01",
@@ -146,6 +146,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "All Selected Views",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -269,6 +270,7 @@
         "type": "prometheus",
         "uid": "${DS_PROMETHEUS}"
       },
+      "description": "All Selected Views",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -319,8 +321,7 @@
                 "value": 80
               }
             ]
-          },
-          "unit": "decbytes"
+          }
         },
         "overrides": []
       },
@@ -349,7 +350,7 @@
         {
           "editorMode": "code",
           "expr": "vast_quota_used_inodes{cluster=\"$cluster\", path=~\"$view\"}",
-          "legendFormat": "{{path}} - Used Capacity",
+          "legendFormat": "{{path}} - Used Inodes",
           "range": true,
           "refId": "A",
           "datasource": {
@@ -363,7 +364,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "vast_quota_soft_inodes{cluster=\"$cluster\", path=~\"$view\"}",
+          "expr": "vast_quota_soft_limit_inodes{cluster=\"$cluster\", path=~\"$view\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "{{path}} - Soft Limit",
@@ -376,7 +377,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "vast_quota_hard_inodes{cluster=\"$cluster\", path=~\"$view\"}",
+          "expr": "vast_quota_hard_limit_inodes{cluster=\"$cluster\", path=~\"$view\"}",
           "hide": false,
           "instant": false,
           "legendFormat": "{{path}} - Hard Limit",
@@ -450,7 +451,7 @@
               "options": {
                 "mode": "exclude",
                 "names": [
-                  "/CS-HomeDirs"
+                  "/bonzo"
                 ],
                 "prefix": "All except:",
                 "readOnly": true
@@ -678,7 +679,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "ns"
         },
         "overrides": []
       },
@@ -975,9 +976,34 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "ms"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "/sli"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 9,
@@ -1010,7 +1036,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_latency{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
+          "expr": "  (\n    sum by (path) (\n        vast_user_view_read_latency{cluster=\"$cluster\", path=~\"$view\"}\n      * on (cluster, username, uid, path, protocol, bucket, share, name, alias)\n        vast_user_view_read_iops{cluster=\"$cluster\", path=~\"$view\"}\n    )\n  /\n    sum by (path) (\n        vast_user_view_read_iops{cluster=\"$cluster\", path=~\"$view\"}\n    )\n  )\n  and\n  sum by (path) (\n    vast_user_view_read_iops{cluster=\"$cluster\", path=~\"$view\"}\n  ) > 0",
           "hide": false,
           "instant": false,
           "legendFormat": "{{path}}",
@@ -1074,9 +1100,34 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "ms"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "/sli"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
         "h": 9,
@@ -1109,7 +1160,7 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_latency{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
+          "expr": "  (\n    sum by (path) (\n        vast_user_view_write_latency{cluster=\"$cluster\", path=~\"$view\"}\n      * on (cluster, username, uid, path, protocol, bucket, share, name, alias)\n        vast_user_view_write_iops{cluster=\"$cluster\", path=~\"$view\"}\n    )\n  /\n    sum by (path) (\n        vast_user_view_write_iops{cluster=\"$cluster\", path=~\"$view\"}\n    )\n  )\n  and\n  sum by (path) (\n    vast_user_view_write_iops{cluster=\"$cluster\", path=~\"$view\"}\n  ) > 0",
           "hide": false,
           "instant": false,
           "legendFormat": "{{path}}",
@@ -1653,7 +1704,7 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-4h",
     "to": "now"
   },
   "timepicker": {
@@ -1672,6 +1723,6 @@
   "timezone": "utc",
   "title": "Top Actors - Views",
   "uid": "vastview",
-  "version": 46,
+  "version": 64,
   "weekStart": ""
 }

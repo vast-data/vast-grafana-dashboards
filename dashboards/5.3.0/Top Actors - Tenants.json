@@ -122,14 +122,14 @@
         "x": 0,
         "y": 0
       },
-      "id": 10,
+      "id": 12,
       "options": {
         "code": {
           "language": "plaintext",
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per Tenant Performance Metrics - Top N</h1>\n<p style=\"text-align: center;\">Please note that the exact number of tenants shown here is dependant on the chosen time range. <br>\nFor a larger time range, there might be shown more tenants than the chosen number, since there's a higher chance that the most active tenants were changed over time.\n</p>",
+        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per Tenant Performance Metrics - Top N</h1>\n<p style=\"text-align: center;\">Wider time ranges may show more tenants than the chosen top-N, since the most active tenants can shift over time.\n</p>",
         "mode": "markdown"
       },
       "pluginVersion": "12.0.1+security-01",
@@ -385,7 +385,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -484,7 +484,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -1085,13 +1085,13 @@
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-4h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "utc",
-  "title": "Top Actors - Tenant",
+  "title": "Top Actors - Tenants",
   "uid": "eee8g280l7vggd",
-  "version": 12,
+  "version": 29,
   "weekStart": ""
 }

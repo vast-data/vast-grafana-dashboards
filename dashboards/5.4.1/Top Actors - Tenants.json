@@ -15,7 +15,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "10.2.3"
+      "version": "12.0.1+security-01"
     },
     {
       "type": "datasource",
@@ -77,6 +77,20 @@
       "includeVars": true,
       "keepTime": true,
       "tags": [
+        "Switches"
+      ],
+      "targetBlank": true,
+      "title": "NICs & Switches",
+      "tooltip": "",
+      "type": "dashboards",
+      "url": ""
+    },
+    {
+      "asDropdown": true,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [
         "Logs"
       ],
       "targetBlank": false,
@@ -100,7 +114,6 @@
       "url": ""
     }
   ],
-  "liveNow": false,
   "panels": [
     {
       "gridPos": {
@@ -109,17 +122,17 @@
         "x": 0,
         "y": 0
       },
-      "id": 10,
+      "id": 12,
       "options": {
         "code": {
           "language": "plaintext",
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per Tenant Performance Metrics - Top N</h1>\n<p style=\"text-align: center;\">Please note that the exact number of tenants shown here is dependant on the chosen time range. <br>\nFor a larger time range, there might be shown more tenants than the chosen number, since there's a higher chance that the most active tenants were changed over time.\n</p>",
+        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per Tenant Performance Metrics - Top N</h1>\n<p style=\"text-align: center;\">Wider time ranges may show more tenants than the chosen top-N, since the most active tenants can shift over time.\n</p>",
         "mode": "markdown"
       },
-      "pluginVersion": "10.2.3",
+      "pluginVersion": "12.0.1+security-01",
       "type": "text"
     },
     {
@@ -140,6 +153,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -170,8 +184,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -202,7 +215,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -210,10 +223,10 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_read_bw_sum{cluster=\"$cluster\", tenant=~\"$tenant\"}[$__rate_interval]))",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_read_bw{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "instant": false,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "B"
         }
@@ -239,6 +252,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -269,8 +283,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
@@ -301,7 +314,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -309,9 +322,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_write_bw_sum{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]))",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_write_bw{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "instant": false,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "A"
         }
@@ -337,6 +350,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -367,12 +381,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
-          "unit": "µs"
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -399,7 +412,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -407,10 +420,10 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_read_latency_sum{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]) / rate(vast_tenant_metrics_TenantMetrics_read_latency_count{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]))",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_read_latency{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "instant": false,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "C"
         }
@@ -436,6 +449,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -466,12 +480,11 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "purple",
-                "value": null
+                "color": "purple"
               }
             ]
           },
-          "unit": "µs"
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -498,7 +511,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -506,10 +519,10 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, vast_tenant_metrics_TenantMetrics_write_latency_avg{cluster=\"$cluster\", name=~\"$tenant\"})",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_write_latency{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "instant": false,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "E"
         }
@@ -534,6 +547,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -575,8 +589,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -609,7 +622,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -618,10 +631,10 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_read_iops_avg{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]))",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_read_iops{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "A"
         }
@@ -646,6 +659,7 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 15,
             "gradientMode": "none",
@@ -687,8 +701,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               }
             ]
           },
@@ -721,7 +734,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -730,10 +743,10 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_write_iops_count{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]))",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_write_iops{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "B"
         }
@@ -832,7 +845,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -841,10 +854,10 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_read_md_iops_count{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]))",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_read_md_iops{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "A"
         }
@@ -943,7 +956,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.5.1",
+      "pluginVersion": "12.0.1+security-01",
       "targets": [
         {
           "datasource": {
@@ -951,10 +964,10 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk($k, rate(vast_tenant_metrics_TenantMetrics_write_md_iops_avg{cluster=\"$cluster\", name=~\"$tenant\"}[$__rate_interval]))",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_write_md_iops{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "instant": false,
-          "legendFormat": "{{name}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "B"
         }
@@ -964,7 +977,7 @@
     }
   ],
   "refresh": "",
-  "schemaVersion": 39,
+  "schemaVersion": 41,
   "tags": [
     "Performance"
   ],
@@ -977,9 +990,7 @@
           "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_cluster_drr,cluster)",
-        "hide": 0,
         "includeAll": false,
-        "multi": false,
         "name": "cluster",
         "options": [],
         "query": {
@@ -989,8 +1000,6 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
@@ -1002,7 +1011,6 @@
         "definition": "label_values(vast_cluster_drr{cluster=\"$cluster\"},instance)",
         "hide": 2,
         "includeAll": false,
-        "multi": false,
         "name": "cluster_ip",
         "options": [],
         "query": {
@@ -1012,20 +1020,15 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       },
       {
         "current": {
-          "selected": false,
           "text": "100",
           "value": "100"
         },
-        "hide": 0,
         "includeAll": false,
         "label": "Amount of Tenants to Display",
-        "multi": false,
         "name": "k",
         "options": [
           {
@@ -1055,7 +1058,6 @@
           }
         ],
         "query": "2, 5, 10, 50, 100",
-        "skipUrlSync": false,
         "type": "custom"
       },
       {
@@ -1066,7 +1068,6 @@
           "uid": "${DS_PROMETHEUS}"
         },
         "definition": "label_values(vast_tenant_metrics_TenantMetrics_read_bw_avg{cluster=\"$cluster\"},name)",
-        "hide": 0,
         "includeAll": true,
         "label": "Tenant",
         "multi": true,
@@ -1079,20 +1080,18 @@
         },
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
         "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-4h",
     "to": "now"
   },
   "timepicker": {},
-  "timezone": "Europe/London",
-  "title": "Top Actors - Tenant",
+  "timezone": "utc",
+  "title": "Top Actors - Tenants",
   "uid": "eee8g280l7vggd",
-  "version": 4,
+  "version": 29,
   "weekStart": ""
 }

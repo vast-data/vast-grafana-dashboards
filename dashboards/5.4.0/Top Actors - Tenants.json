@@ -41,26 +41,20 @@
       {
         "builtIn": 1,
         "datasource": {
-          "type": "prometheus",
-          "uid": "${DS_PROMETHEUS}"
+          "type": "grafana",
+          "uid": "-- Grafana --"
         },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
-        "target": {
-          "limit": 100,
-          "matchAny": false,
-          "tags": [],
-          "type": "dashboard"
-        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 1,
+  "graphTooltip": 0,
   "id": null,
   "links": [
     {
@@ -85,7 +79,7 @@
       "tags": [
         "Switches"
       ],
-      "targetBlank": false,
+      "targetBlank": true,
       "title": "NICs & Switches",
       "tooltip": "",
       "type": "dashboards",
@@ -113,7 +107,7 @@
       "tags": [
         "VAST"
       ],
-      "targetBlank": false,
+      "targetBlank": true,
       "title": "Main",
       "tooltip": "",
       "type": "dashboards",
@@ -128,602 +122,18 @@
         "x": 0,
         "y": 0
       },
-      "id": 897,
+      "id": 12,
       "options": {
         "code": {
           "language": "plaintext",
           "showLineNumbers": false,
           "showMiniMap": false
         },
-        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per View Performance and Capacity Metrics - Top N</h1>\n<p style=\"text-align: center;\">Please note that the exact number of views shown here is dependant on the chosen time range. <br>\nFor a larger time range, there might be shown more views than the chosen number, since there's a higher chance that the most active views were changed over time.\n</p>",
+        "content": "<p><br></p>\n<h1 style=\"text-align: center;\">Per Tenant Performance Metrics - Top N</h1>\n<p style=\"text-align: center;\">Wider time ranges may show more tenants than the chosen top-N, since the most active tenants can shift over time.\n</p>",
         "mode": "markdown"
       },
       "pluginVersion": "12.0.1+security-01",
       "type": "text"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 4
-      },
-      "id": 903,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.0.1+security-01",
-      "targets": [
-        {
-          "editorMode": "code",
-          "expr": "vast_quota_used_capacity{cluster=\"$cluster\", path=~\"$view\"}",
-          "legendFormat": "{{path}} - Used Capacity",
-          "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "vast_quota_soft_limit{cluster=\"$cluster\", path=~\"$view\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{path}} - Soft Limit",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "vast_quota_hard_limit{cluster=\"$cluster\", path=~\"$view\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{path}} - Hard Limit",
-          "range": true,
-          "refId": "C"
-        }
-      ],
-      "title": "View Quota - Capacity",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 5,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 4
-      },
-      "id": 904,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.0.1+security-01",
-      "targets": [
-        {
-          "editorMode": "code",
-          "expr": "vast_quota_used_inodes{cluster=\"$cluster\", path=~\"$view\"}",
-          "legendFormat": "{{path}} - Used Capacity",
-          "range": true,
-          "refId": "A",
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          }
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "vast_quota_soft_inodes{cluster=\"$cluster\", path=~\"$view\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{path}} - Soft Limit",
-          "range": true,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "expr": "vast_quota_hard_inodes{cluster=\"$cluster\", path=~\"$view\"}",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{path}} - Hard Limit",
-          "range": true,
-          "refId": "C"
-        }
-      ],
-      "title": "View Quota - Inodes",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Excluding \"/\" view",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "purple"
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "/CS-HomeDirs"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 7,
-        "x": 0,
-        "y": 12
-      },
-      "id": 901,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "pluginVersion": "12.0.1+security-01",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "topk($k, vast_view_logical_capacity{cluster=\"$cluster\", path!=\"/\", path=~\"$view\"})",
-          "format": "time_series",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{path}}",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "View Logical Capacity",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "description": "Excluding \"/\" view",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 1,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "purple"
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 8,
-        "x": 7,
-        "y": 12
-      },
-      "id": 902,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "maxHeight": 600,
-          "mode": "multi",
-          "sort": "desc"
-        }
-      },
-      "pluginVersion": "12.0.1+security-01",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "topk($k, vast_view_physical_capacity{cluster=\"$cluster\", path!=\"/\", path=~\"$view\"})",
-          "format": "time_series",
-          "hide": false,
-          "instant": false,
-          "legendFormat": "{{path}}",
-          "range": true,
-          "refId": "B"
-        }
-      ],
-      "title": "View Physical Capacity",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "${DS_PROMETHEUS}"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "fixedColor": "super-light-blue",
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "barWidthFactor": 0.6,
-            "drawStyle": "line",
-            "fillOpacity": 15,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "smooth",
-            "lineWidth": 2,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "index": 0,
-                  "text": "0"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green"
-              }
-            ]
-          },
-          "unit": "µs"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 11,
-        "w": 9,
-        "x": 15,
-        "y": 12
-      },
-      "id": 900,
-      "options": {
-        "legend": {
-          "calcs": [
-            "max"
-          ],
-          "displayMode": "table",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "hideZeros": false,
-          "maxHeight": 600,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "pluginVersion": "12.0.1+security-01",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "${DS_PROMETHEUS}"
-          },
-          "editorMode": "code",
-          "exemplar": true,
-          "expr": "topk($k, rate(vast_view_metrics_ViewMetrics_qos_wait_for_budget_time_sum{cluster=\"$cluster\", path=~\"$view\"}[$__rate_interval]) / rate(vast_view_metrics_ViewMetrics_qos_wait_for_budget_time_count{cluster=\"$cluster\", path=~\"$view\"}[$__rate_interval]))",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "{{path}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "title": "QoS Average Wait Time",
-      "type": "timeseries"
     },
     {
       "datasource": {
@@ -760,7 +170,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -786,9 +196,9 @@
         "h": 11,
         "w": 12,
         "x": 0,
-        "y": 23
+        "y": 4
       },
-      "id": 855,
+      "id": 11,
       "options": {
         "legend": {
           "calcs": [
@@ -813,10 +223,10 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_bw{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_read_bw{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "instant": false,
-          "legendFormat": "{{path}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "B"
         }
@@ -859,7 +269,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -885,9 +295,9 @@
         "h": 11,
         "w": 12,
         "x": 12,
-        "y": 23
+        "y": 4
       },
-      "id": 896,
+      "id": 3,
       "options": {
         "legend": {
           "calcs": [
@@ -912,9 +322,9 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_bw{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_write_bw{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "instant": false,
-          "legendFormat": "{{path}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "A"
         }
@@ -957,7 +367,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -975,17 +385,17 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "ms"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 11,
         "w": 12,
         "x": 0,
-        "y": 34
+        "y": 15
       },
-      "id": 898,
+      "id": 4,
       "options": {
         "legend": {
           "calcs": [
@@ -1010,10 +420,10 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_latency{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_read_latency{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "instant": false,
-          "legendFormat": "{{path}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "C"
         }
@@ -1056,7 +466,7 @@
               "type": "linear"
             },
             "showPoints": "auto",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1074,17 +484,17 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "ms"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 11,
         "w": 12,
         "x": 12,
-        "y": 34
+        "y": 15
       },
-      "id": 899,
+      "id": 5,
       "options": {
         "legend": {
           "calcs": [
@@ -1109,10 +519,10 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_latency{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_write_latency{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "instant": false,
-          "legendFormat": "{{path}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "E"
         }
@@ -1154,7 +564,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1188,12 +598,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 11,
         "w": 12,
         "x": 0,
-        "y": 43
+        "y": 26
       },
-      "id": 5,
+      "id": 6,
       "options": {
         "legend": {
           "calcs": [
@@ -1208,7 +618,7 @@
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -1221,10 +631,10 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_iops{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_read_iops{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{path}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "A"
         }
@@ -1266,7 +676,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1300,12 +710,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 11,
         "w": 12,
         "x": 12,
-        "y": 43
+        "y": 26
       },
-      "id": 895,
+      "id": 7,
       "options": {
         "legend": {
           "calcs": [
@@ -1320,7 +730,7 @@
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -1333,10 +743,10 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_iops{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_write_iops{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{path}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "B"
         }
@@ -1379,7 +789,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1413,12 +823,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 11,
         "w": 12,
         "x": 0,
-        "y": 52
+        "y": 37
       },
-      "id": 892,
+      "id": 8,
       "options": {
         "legend": {
           "calcs": [
@@ -1431,7 +841,7 @@
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -1444,10 +854,10 @@
           },
           "editorMode": "code",
           "exemplar": true,
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_read_md_iops{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_read_md_iops{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{path}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "A"
         }
@@ -1490,7 +900,7 @@
               "type": "linear"
             },
             "showPoints": "never",
-            "spanNulls": true,
+            "spanNulls": false,
             "stacking": {
               "group": "A",
               "mode": "none"
@@ -1524,12 +934,12 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
+        "h": 11,
         "w": 12,
         "x": 12,
-        "y": 52
+        "y": 37
       },
-      "id": 894,
+      "id": 9,
       "options": {
         "legend": {
           "calcs": [
@@ -1542,7 +952,7 @@
         "tooltip": {
           "hideZeros": false,
           "maxHeight": 600,
-          "mode": "single",
+          "mode": "multi",
           "sort": "none"
         }
       },
@@ -1554,10 +964,10 @@
             "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
-          "expr": "topk(\n  $k,\n  sum by (path) (\n    vast_user_view_write_md_iops{cluster=\"$cluster\", path=~\"$view\"}\n  )\n)",
+          "expr": "topk(\n  $k,\n  sum by (tenant) (\n    vast_user_view_write_md_iops{cluster=\"$cluster\", tenant=~\"$tenant\"}\n  )\n)",
           "hide": false,
           "instant": false,
-          "legendFormat": "{{path}}",
+          "legendFormat": "{{tenant}}",
           "range": true,
           "refId": "B"
         }
@@ -1579,33 +989,33 @@
           "type": "prometheus",
           "uid": "${DS_PROMETHEUS}"
         },
-        "definition": "label_values(vast_cluster_online,cluster)",
+        "definition": "label_values(vast_cluster_drr,cluster)",
         "includeAll": false,
-        "label": "Cluster",
         "name": "cluster",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(vast_cluster_online,cluster)",
+          "query": "label_values(vast_cluster_drr,cluster)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
         "regex": "",
-        "sort": 1,
         "type": "query"
       },
       {
-        "allowCustomValue": false,
         "current": {},
-        "definition": "label_values(vast_view_logical_capacity{cluster=\"$cluster\"},path)",
-        "includeAll": true,
-        "label": "Views",
-        "multi": true,
-        "name": "view",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(vast_cluster_drr{cluster=\"$cluster\"},instance)",
+        "hide": 2,
+        "includeAll": false,
+        "name": "cluster_ip",
         "options": [],
         "query": {
           "qryType": 1,
-          "query": "label_values(vast_view_logical_capacity{cluster=\"$cluster\"},path)",
+          "query": "label_values(vast_cluster_drr{cluster=\"$cluster\"},instance)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
@@ -1618,7 +1028,7 @@
           "value": "100"
         },
         "includeAll": false,
-        "label": "Amount of Views to Display",
+        "label": "Amount of Tenants to Display",
         "name": "k",
         "options": [
           {
@@ -1649,29 +1059,39 @@
         ],
         "query": "2, 5, 10, 50, 100",
         "type": "custom"
+      },
+      {
+        "allValue": ".*",
+        "current": {},
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
+        "definition": "label_values(vast_tenant_metrics_TenantMetrics_read_bw_avg{cluster=\"$cluster\"},name)",
+        "includeAll": true,
+        "label": "Tenant",
+        "multi": true,
+        "name": "tenant",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values(vast_tenant_metrics_TenantMetrics_read_bw_avg{cluster=\"$cluster\"},name)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-4h",
     "to": "now"
   },
-  "timepicker": {
-    "refresh_intervals": [
-      "30s",
-      "1m",
-      "2m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ]
-  },
+  "timepicker": {},
   "timezone": "utc",
-  "title": "Top Actors - Views",
-  "uid": "vastview",
-  "version": 46,
+  "title": "Top Actors - Tenants",
+  "uid": "eee8g280l7vggd",
+  "version": 29,
   "weekStart": ""
 }
